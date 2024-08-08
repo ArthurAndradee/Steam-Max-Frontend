@@ -1,0 +1,10 @@
+.welcome-main {
+    height: 100vh;
+   
+    background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.9), 
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('../../Assets/welcome-background.png');
+}
