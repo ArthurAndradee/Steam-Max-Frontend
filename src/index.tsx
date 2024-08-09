@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import WelcomePage from './Pages/Login/welcome';
+import Home from './Pages/Home/home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import ProfilePicker from './Pages/Profile-Picker/profile-picker';
-import Home from './Pages/Home/home';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <ProfilePicker />,
+    element: <Home />,
   },
 ]);
 
