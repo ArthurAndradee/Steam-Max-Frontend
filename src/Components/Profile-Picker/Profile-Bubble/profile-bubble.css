@@ -1,0 +1,24 @@
+.profile-picker-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+.profile-picker-picture {
+    width: 7rem;
+    transition: all 300ms; 
+}
+
+.profile-picker-name {
+    font-size: 1rem;
+    transition: all 300ms; 
+}
+
+.profile-picker-main:hover .profile-picker-picture {
+    width: 8.5rem;
+}
+
+.profile-picker-main:hover .profile-picker-name {
+    font-size: 1.2rem;
+}

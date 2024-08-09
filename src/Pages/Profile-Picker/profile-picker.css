@@ -7,3 +7,7 @@
     background: linear-gradient(0deg, rgba(29,1,1,1) 0%, rgba(28,1,1,1) 37%, rgba(0,0,0,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1d0101",endColorstr="#000000",GradientType=1);
 }
+
+.edit-profile-button {
+    margin-top: 12rem;
+}
