@@ -5,6 +5,7 @@ import WelcomePage from './Pages/Login/welcome';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
+import Home from './Pages/Home/home';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
