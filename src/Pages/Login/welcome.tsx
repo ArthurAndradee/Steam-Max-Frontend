@@ -1,4 +1,4 @@
-import WelcomeHeader from '../../Components/Headers/Welcome/welcome';
+import WelcomeHeader from '../../Components/Headers/Login/welcome';
 import './welcome.css';
 
 function WelcomePage() {
