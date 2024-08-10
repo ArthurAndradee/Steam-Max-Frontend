@@ -6,8 +6,8 @@ function TitleSlider() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3
+    slidesToShow: 6,
+    slidesToScroll: 6
   };
   return (
     <div className="slider-container">
