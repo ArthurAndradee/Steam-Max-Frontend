@@ -13,7 +13,7 @@ function TitleSlider() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const slidesToShow = windowWidth < 600 ? 4 : windowWidth < 820 ? 5 : windowWidth < 950 ? 6 : windowWidth < 1150 ? 7 : windowWidth < 1366 ? 8 : windowWidth < 1640 ? 9 : 10;
+  const slidesToShow = windowWidth < 580 ? 3 : windowWidth < 700 ? 4 : windowWidth < 820 ? 5 : windowWidth < 950 ? 6 : windowWidth < 1150 ? 7 : windowWidth < 1366 ? 8 : windowWidth < 1640 ? 9 : 10;
   
   const settings = {
     className: "center",
