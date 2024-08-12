@@ -12,5 +12,10 @@
 }
 
 .header-link:hover {
+    cursor: pointer;
     border-bottom: 1px solid #FFF;
+}
+
+.header-icon:hover {
+    cursor: pointer;
 }

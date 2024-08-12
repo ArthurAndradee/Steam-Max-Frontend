@@ -13,13 +13,13 @@ function Header(user: HeaderProps) {
       <div className='d-flex'>
         <div className='mx-2 pb-2 header-link'>Home</div>
         <div className='mx-2 pb-2 header-link'>Series</div>
-        <div className='mx-2 pb-2 header-link'>Shows</div>
+        <div className='mx-2 pb-2 header-link'>Movies</div>
         <div className='mx-2 pb-2 header-link'>Children and Family</div>
       </div>
       <div className='d-flex'>
-        <FontAwesomeIcon className='mx-2 text-light' icon={faMagnifyingGlass} />
-        <FontAwesomeIcon className='mx-2 text-light' icon={faBookmark} />
-        <div className='rounded border ms-2 current-profile-icon' style={{backgroundImage: `url(${user.currentProfilePicture})`}}
+        <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} />
+        <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} />
+        <div className='rounded border ms-2 current-profile-icon header-icon' style={{backgroundImage: `url(${user.currentProfilePicture})`}}
         ></div>
       </div>
     </div>
