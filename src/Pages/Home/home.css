@@ -1,5 +1,5 @@
 .home-main {
-    height: 100vh;
+    height: 100%;
 
     background: rgb(29,1,1);
     background: -moz-linear-gradient(0deg, rgba(29,1,1,1) 0%, rgba(28,1,1,1) 37%, rgba(0,0,0,1) 100%);

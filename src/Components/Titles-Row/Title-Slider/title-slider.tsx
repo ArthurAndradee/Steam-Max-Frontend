@@ -8,7 +8,7 @@ function TitleSlider({ movies }: Movies) {
   
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToShow
