@@ -1,10 +1,18 @@
 import Slider from 'react-slick';
 import './title-slider.css';
-import { useEffect, useState } from 'react';
 import { Movies } from '../../../utils/interfaces';
+import { useEffect, useState } from 'react';
 
 function TitleSlider({ movies }: Movies) {
-  const slidesToShow = window.innerWidth < 650 ? 3 : window.innerWidth < 750 ? 4 : window.innerWidth < 850 ? 5 : window.innerWidth < 950 ? 6 : window.innerWidth < 1150 ? 7 : window.innerWidth < 1366 ? 8 : window.innerWidth < 1440 ? 11 : window.innerWidth < 1640 ? 12 : window.innerWidth < 1840 ? 13 : window.innerWidth < 2040 ? 14 : window.innerWidth < 2240 ? 15 : window.innerWidth < 2440 ? 16 : window.innerWidth < 2540 ? 17 : window.innerWidth < 2640 ? 18 : 20;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const slidesToShow = windowWidth < 650 ? 3 : windowWidth < 750 ? 4 : windowWidth < 850 ? 5 : windowWidth < 950 ? 6 : windowWidth < 1150 ? 7 : windowWidth < 1366 ? 8 : windowWidth < 1440 ? 11 : windowWidth < 1640 ? 12 : windowWidth < 1840 ? 13 : windowWidth < 2040 ? 14 : windowWidth < 2240 ? 15 : windowWidth < 2440 ? 16 : windowWidth < 2540 ? 17 : windowWidth < 2640 ? 18 : 20;
+  
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   const settings = {
     dots: false,
