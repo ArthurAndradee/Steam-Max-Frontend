@@ -24,7 +24,6 @@ function Home() {
     fetchMoviesByCategory('Romance', setRomanceMovies);
     fetchMoviesByCategory('Fantasy', setFantasyMovies);
     fetchMoviesByCategory('Horror', setHorrorMovies);
-
   }, []);
 
   console.log(romanceMovies)
