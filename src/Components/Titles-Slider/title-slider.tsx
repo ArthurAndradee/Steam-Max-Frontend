@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import './title-slider.css';
 import { useNavigate } from 'react-router-dom';
-import { Movies } from '../../../utils/interfaces';
+import { Movies } from '../../utils/interfaces';
 import { useState, useEffect } from 'react';
 
 function TitleSlider({ movies }: Movies) {

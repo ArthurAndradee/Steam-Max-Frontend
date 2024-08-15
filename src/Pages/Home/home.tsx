@@ -1,5 +1,5 @@
 import Header from '../../Components/Headers/Standard/header';
-import TitleSlider from '../../Components/Titles-Row/Title-Slider/title-slider';
+import TitleSlider from '../../Components/Titles-Slider/title-slider';
 import { userProfiles } from '../../Database/profiles';
 import { Movie } from '../../utils/interfaces';
 import './home.css';

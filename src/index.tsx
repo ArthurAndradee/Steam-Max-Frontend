@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Home from './Pages/Home/home';
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
-import TrailerPlayer from './Pages/Player/player';
+import Player from './Pages/Player/player';
 import { Movie } from './utils/interfaces';
 import './index.css';
 
@@ -43,7 +43,7 @@ const App = () => {
   const generateMovieRoutes = (movies: Movie[]): RouteObject[] => {
     return movies.map(movie => ({
       path: `/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`,
-      element: <TrailerPlayer trailerUrl={`http://localhost:5000/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} title={movie.title} />,
+      element: <Player trailerUrl={`http://localhost:5000/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} title={movie.title} />,
     }));
   };
 

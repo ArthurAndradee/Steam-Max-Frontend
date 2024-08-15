@@ -1,0 +1,23 @@
+.trailer-player {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.player-title {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+    position: absolute;
+    z-index: 1;
+}
+
+.player-title.hidden {
+    opacity: 0;
+}
