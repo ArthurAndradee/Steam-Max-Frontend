@@ -9,7 +9,7 @@ export interface Movies {
     movies: Movie[]
 }
 
-export interface TrailerPlayerProps {
+export interface PlayerProps {
     trailerUrl: string;
     title: string;
 }  

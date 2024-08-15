@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Home from './Pages/Home/home';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
+import TrailerPlayer from './Pages/Player/player';
 import { Movie } from './utils/interfaces';
 import './index.css';
 
@@ -39,11 +40,25 @@ const App = () => {
     fetchMovies();
   }, []);
 
+  const generateMovieRoutes = (movies: Movie[]): RouteObject[] => {
+    return movies.map(movie => ({
+      path: `/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`,
+      element: <TrailerPlayer trailerUrl={`http://localhost:5000/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} title={movie.title} />,
+    }));
+  };
+
+  const movieRoutes = [
+    ...generateMovieRoutes(romanceMovies),
+    ...generateMovieRoutes(fantasyMovies),
+    ...generateMovieRoutes(horrorMovies),
+  ];
+
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Home romanceMovies={romanceMovies} fantasyMovies={fantasyMovies} horrorMovies={horrorMovies} />,
     },
+    ...movieRoutes,
   ]);
 
   return <RouterProvider router={router} />;
@@ -55,7 +70,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to   start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
