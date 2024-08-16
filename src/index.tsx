@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-d
 import Player from './Pages/Player/player';
 import { Movie } from './utils/interfaces';
 import './index.css';
+import Login from './Pages/Login/welcome';
+import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -56,6 +58,14 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: '/',
+      element: <Login />
+    },
+    {
+      path: '/profile-picker',
+      element: <ProfilePicker />
+    },
+    {
+      path: '/home',
       element: <Home romanceMovies={romanceMovies} fantasyMovies={fantasyMovies} horrorMovies={horrorMovies} />,
     },
     ...movieRoutes,
