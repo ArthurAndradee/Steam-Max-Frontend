@@ -13,3 +13,9 @@ export interface PlayerProps {
     trailerUrl: string;
     title: string;
 }  
+
+export interface ProfileBubbleProps {
+    userName: string;
+    userPicture: string;
+    onClick: () => void
+}
