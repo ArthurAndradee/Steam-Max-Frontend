@@ -18,13 +18,16 @@ function Login() {
         },
         body: JSON.stringify({ email, password }), // Include password in the request body
       });
+
       const data = await response.json();
-      console.log(data)
-      if (data.token) {
+      console.log('Response Data:', data);
+      console.log('Response Status:', response.status);
+
+      if (response.ok && data.token) { // Check if the response is OK and contains a token
         localStorage.setItem('token', data.token);
         navigate('/profile-picker');
       } else {
-        console.error('Login failed:', data.message);
+        console.error('Login failed:', data.message || 'An error occurred');
       }
     } catch (error) {
       console.error('Login failed:', error);
@@ -40,11 +43,12 @@ function Login() {
         <p className='text-light mb-3 mb-5' style={{ fontSize: '1.75rem' }}>Ready to watch? Enter your email and password to log in.</p>
         <form className='d-flex flex-column align-items-center w-50' onSubmit={handleLogin}>
           <input
-            type="text"
+            type="email"
             className="form-control mb-3 w-75"
             placeholder="Your email here"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
@@ -52,6 +56,7 @@ function Login() {
             placeholder="Your password here"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <button type='submit' className='btn btn-lg btn-danger w-25'>
             Log In {'>'}
