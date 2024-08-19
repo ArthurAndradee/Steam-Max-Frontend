@@ -1,13 +1,25 @@
-.profile-picker-main {
+.profile-picker-container, .profile-picker-main {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+
+    margin: 0.5rem 0;
+}
+
+.profile-picker-container {
+    flex-direction: row;
+}
+
+.profile-picker-main {
+    flex-direction: column;
     position: absolute;
 }
 
 .profile-picker-picture {
     width: 7rem;
     transition: all 300ms; 
+
+    border-radius: 50%;
 }
 
 .profile-picker-name {
@@ -23,4 +35,10 @@
 
 .profile-picker-main:hover .profile-picker-name {
     font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 800px) {
+    .profile-picker-main {
+        position: relative;
+    }
 }

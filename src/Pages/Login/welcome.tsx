@@ -51,7 +51,7 @@ function Login() {
             required
           />
           <input
-            type="password"
+            type="text"
             className="form-control mb-3 w-75"
             placeholder="Your password here"
             value={password}

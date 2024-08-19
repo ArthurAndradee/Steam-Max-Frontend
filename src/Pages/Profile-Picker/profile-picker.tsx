@@ -13,8 +13,8 @@ function ProfilePicker() {
 
   return (
     <div className='main-profile-picker d-flex flex-column align-items-center p-5 text-light'>
-      <h3>Who is watching?</h3>
-      <div className='d-flex mt-5 justify-content-center'>
+      <h3 className='profile-title'>Who is watching?</h3>
+      <div className='profiles-container'>
         {userProfiles.map((user) => (
           <ProfileBubble
             key={user.userName}

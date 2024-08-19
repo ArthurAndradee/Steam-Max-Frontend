@@ -8,6 +8,32 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1d0101",endColorstr="#000000",GradientType=1);
 }
 
+.profile-title {
+    margin-bottom: 5rem;
+}
+
+.profiles-container {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 5rem;
+}
+
 .edit-profile-button {
-    margin-top: 12rem;
+    margin-top: 10rem;
+}
+
+@media only screen and (max-width: 1000px) {
+    .profiles-container {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .profile-title {
+        margin-bottom: 1rem;
+    }
+
+    .edit-profile-button {
+        margin-top: 3rem;
+    }
 }
