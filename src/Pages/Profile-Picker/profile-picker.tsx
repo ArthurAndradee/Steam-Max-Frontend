@@ -12,7 +12,7 @@ function ProfilePicker() {
   };
 
   return (
-    <div className='main-profile-picker d-flex flex-column align-items-center p-5 text-light'>
+    <div className='main-profile-picker d-flex flex-column align-items-center text-light'>
       <h3 className='profile-title'>Who is watching?</h3>
       <div className='profiles-container'>
         {userProfiles.map((user) => (

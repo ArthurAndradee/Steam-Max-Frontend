@@ -1,19 +1,46 @@
 .profile-picker-container, .profile-picker-main {
+    
     display: flex;
     align-items: center;
     justify-content: center;
-
-    margin: 0.5rem 0;
 }
 
 .profile-picker-container {
+    height: 23rem;
+    width: 10rem;
+
     flex-direction: row;
+}
+
+.profile-picker-container:hover {    
+    .profile-background-hover{
+        background: rgb(0,0,0);
+        background: -moz-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(64,0,0,0.7497373949579832) 23%, rgba(63,0,0,0.7441351540616247) 77%, rgba(0,0,0,0) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(64,0,0,0.7497373949579832) 23%, rgba(63,0,0,0.7441351540616247) 77%, rgba(0,0,0,0) 100%);
+        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(64,0,0,0.7497373949579832) 23%, rgba(63,0,0,0.7441351540616247) 77%, rgba(0,0,0,0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+    
+    }
+
+    .profile-picker-picture {
+        -webkit-box-shadow: 0px 0px 75px 15px rgba(110,0,0,1);
+        -moz-box-shadow: 0px 0px 75px 15px rgba(110,0,0,1);
+        box-shadow: 0px 0px 75px 15px rgba(110,0,0,1);
+    }
+}
+
+.profile-background-hover {
+    height: 15rem;
+    width: 10rem;
+    position: absolute;
+    top: 0;
 }
 
 .profile-picker-main {
     flex-direction: column;
     position: absolute;
-
+    
+    margin-top: 10rem;
     border-radius: 50%;
 }
 
@@ -39,7 +66,7 @@
     font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
     .profile-picker-main {
         position: relative;
     }

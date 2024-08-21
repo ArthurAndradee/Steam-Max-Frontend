@@ -9,24 +9,27 @@
 }
 
 .profile-title {
-    margin-bottom: 5rem;
+    position: absolute;
+    margin-top: 5rem;
+
+    z-index: 1;
 }
 
 .profiles-container {
     display: flex;
-    justify-content: center;
 
-    margin-top: 5rem;
+    /* margin-top: 10rem; */
 }
 
 .edit-profile-button {
-    margin-top: 10rem;
+    margin-top: 5rem;
+    /* margin-top: 10rem; */
 }
 
 @media only screen and (max-width: 1000px) {
     .profiles-container {
         flex-direction: column;
-        margin-top: 0;
+        margin-top: 3rem;
     }
 
     .profile-title {
