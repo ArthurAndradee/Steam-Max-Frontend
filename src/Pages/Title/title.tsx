@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { TitlePageProps } from '../../utils/interfaces';
+import { Movie } from '../../utils/interfaces';
 import './title.css'
 
-function TitlePage(movie: TitlePageProps) {
+function TitlePage(movie: Movie) {
 
     return (
         <div className='d-flex flex-column'>

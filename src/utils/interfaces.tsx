@@ -2,7 +2,10 @@ export interface Movie {
     title: string,
     mainCast: [string],
     genre: string,
-    banner: string
+    banner: string,
+    ageRating: string,
+    rating: number
+    description: string
 }
 
 export interface Movies {
@@ -24,15 +27,6 @@ export interface ProfileBubbleProps {
     onClick: () => void
 }
 
-export interface TitlePageProps {
-    title: string,
-    mainCast: [string],
-    genre: string,
-    banner: string,
-    ageRating: string,
-    rating: number
-    description: string
-}
 export interface CategorizedMovies {
   [category: string]: Movie[];
 }

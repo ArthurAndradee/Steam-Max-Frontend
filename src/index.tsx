@@ -9,6 +9,7 @@ import './index.css';
 import Login from './Pages/Login/welcome';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import axios from 'axios';
+import TitlePage from './Pages/Title/title';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -38,6 +39,21 @@ const App = () => {
   const movieRoutes = [
     ...generateMovieRoutes(movies),
   ];
+
+  const titleRoutes = movies.map((movie) => ({
+    path: `/titles/${movie.title}`,
+    element: (
+      <TitlePage 
+        title={movie.title} 
+        mainCast={movie.mainCast} 
+        genre={movie.genre} 
+        banner={movie.banner} 
+        ageRating={movie.ageRating} 
+        rating={movie.rating} 
+        description={movie.description} 
+      />
+    )
+  }))
   
 
   const router = createBrowserRouter([
@@ -54,6 +70,7 @@ const App = () => {
       element: <Home movies={movies} />,
     },
     ...movieRoutes,
+    ...titleRoutes,
   ]);
 
   return <RouterProvider router={router} />;
