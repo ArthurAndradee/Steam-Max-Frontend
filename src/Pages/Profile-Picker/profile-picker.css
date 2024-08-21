@@ -17,13 +17,10 @@
 
 .profiles-container {
     display: flex;
-
-    /* margin-top: 10rem; */
 }
 
 .edit-profile-button {
-    margin-top: 5rem;
-    /* margin-top: 10rem; */
+    margin-top: 10rem;
 }
 
 @media only screen and (max-width: 1000px) {
