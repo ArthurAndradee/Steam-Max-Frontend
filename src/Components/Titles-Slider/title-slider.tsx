@@ -1,6 +1,6 @@
 import Slider from 'react-slick';
 import './title-slider.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Movies } from '../../utils/interfaces';
 import { useState, useEffect } from 'react';
 
@@ -17,11 +17,6 @@ function TitleSlider({ movies }: Movies) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleMovieClick = (movieTitle: string) => {
-    const routePath = `/movies/${movieTitle.toLowerCase().replace(/\s+/g, '-')}`;
-    navigate(routePath);
-  };
-
   const settings = {
     dots: false,
     infinite: true,
@@ -34,10 +29,10 @@ function TitleSlider({ movies }: Movies) {
     <div className="slider-container mx-5">
       <Slider {...settings} className="mx-4">
         {movies.map((movie) => (
-          <div key={movie.title} onClick={() => handleMovieClick(movie.title)}>
+          <Link to={'/profile-picker'} key={movie.title}>
             <img src={movie.banner} alt={movie.title} className="title-card" />
             <div style={{ width: '1px' }} className="border"></div>
-          </div>
+          </Link>
         ))}
       </Slider>
     </div>
