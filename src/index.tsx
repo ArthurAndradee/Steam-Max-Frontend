@@ -10,6 +10,8 @@ import Login from './Pages/Login/welcome';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import axios from 'axios';
 import TitlePage from './Pages/Title/title-page';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -78,7 +80,9 @@ const App = () => {
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

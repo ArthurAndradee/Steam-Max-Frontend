@@ -1,6 +1,7 @@
 import { faBookmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './header.css';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   currentProfilePicture: string;
@@ -17,10 +18,12 @@ function Header(user: HeaderProps) {
         <div className='mx-2 pb-2 header-link'>Children and Family</div>
       </div>
       <div className='d-flex'>
-        <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} />
+        <Link to={'/watchlist'}><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} /></Link>
         <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} />
-        <div className='rounded border ms-2 current-profile-icon header-icon' style={{backgroundImage: `url(${user.currentProfilePicture})`}}
-        ></div>
+        <div 
+          className='rounded border ms-2 current-profile-icon header-icon' 
+          style={{backgroundImage: `url(${user.currentProfilePicture})`}} 
+        />
       </div>
     </div>
   );

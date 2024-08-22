@@ -1,39 +1,56 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Movie } from '../../utils/interfaces';
-import './title-page.css'
+import { addToWatchlist } from '../../store/watchlist-slice';
+import './title-page.css';
 import Header from '../../Components/Headers/Standard/header';
 import { faHeart, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { RootState } from '../../store/store';
 
 function TitlePage(movie: Movie) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    const watchlist = useSelector((state: RootState) => state.watchlist.movies);
+    console.log(watchlist)
+
+    const handleAddToWatchlist = () => {
+        dispatch(addToWatchlist(movie));
+    };
 
     return (
         <div className='title-main'>
             <Header currentProfilePicture={''} />
             <div className='px-5 text-light d-flex flex-row'>
                 <div className='pt-3'>
-                    <button className='title-button btn btn-light' onClick={() => navigate(`/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`)}>
-                        <FontAwesomeIcon icon={faPlay} className='ps-2'/>
+                    <button
+                        className='title-button btn btn-light'
+                        onClick={() => navigate(`/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                    >
+                        <FontAwesomeIcon icon={faPlay} className='ps-2' />
                         <div className='ps-2'>Watch now</div>
                     </button>
-                    <button className='title-button btn btn-light mt-2' >
+                    <button
+                        className='title-button btn btn-light mt-2'
+                        onClick={handleAddToWatchlist}
+                    >
                         <FontAwesomeIcon icon={faHeart} className='ps-1' />
                         <div className='ps-2'>Add to Watchlist</div>
                     </button>
                     <div className='d-flex flex-column pt-3'>
-                        <div className='d-flex flex-column'>Cast: 
-                            {movie.mainCast.map((actor) => (
-                                <div className='pt-1' style={{color:'#a8a8a8'}}>{actor}</div>
+                        <div className='d-flex flex-column'>Cast:
+                            {movie.mainCast.map((actor, index) => (
+                                <div key={index} className='pt-1' style={{ color: '#a8a8a8' }}>{actor}</div>
                             ))}
                         </div>
                         <div className='pt-3'>Critics Rating: {movie.rating.toFixed(1)}</div>
-                        <div className='pt-1' style={{color:'#a8a8a8'}}>{movie.ageRating}</div>
+                        <div className='pt-1' style={{ color: '#a8a8a8' }}>{movie.ageRating}</div>
                     </div>
                 </div>
                 <div className='d-flex flex-column'>
                     <h3 className='p-3'>{movie.title}</h3>
-                    <img className='title-card ms-3' src={movie.banner} alt={movie.title + `-banner`} />
+                    <img className='title-card ms-3' src={movie.banner} alt={movie.title + '-banner'} />
                     <div className='p-3'>{movie.description}</div>
                 </div>
             </div>
