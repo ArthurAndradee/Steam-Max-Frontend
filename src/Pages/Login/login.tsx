@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import WelcomeHeader from '../../Components/Headers/Login/welcome';
-import './welcome.css';
+import './login.css';
 
 function Login() {
   const [email, setEmail] = useState('');

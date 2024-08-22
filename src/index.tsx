@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-d
 import Player from './Pages/Title-Player/player';
 import { Movie } from './utils/interfaces';
 import './index.css';
-import Login from './Pages/Login/welcome';
+import Login from './Pages/Login/login';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import axios from 'axios';
 import TitlePage from './Pages/Title/title-page';
