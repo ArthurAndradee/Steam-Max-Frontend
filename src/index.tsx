@@ -9,7 +9,7 @@ import './index.css';
 import Login from './Pages/Login/welcome';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import axios from 'axios';
-import TitlePage from './Pages/Title/title';
+import TitlePage from './Pages/Title/title-page';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

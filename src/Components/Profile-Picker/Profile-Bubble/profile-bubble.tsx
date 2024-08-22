@@ -10,7 +10,7 @@ function ProfileBubble(user: ProfileBubbleProps) {
       className={`profile-picker-container ${isHovered ? 'hovered' : ''}`}
       onClick={user.onClick}
     >
-      <div className='profile-picker-main'       onMouseEnter={() => setIsHovered(true)}
+      <div className='profile-picker-main'  onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}>
         <img className='profile-picker-picture' alt='Profile' src={user.userPicture}  />
         <div className='profile-picker-name'>{user.userName}</div>

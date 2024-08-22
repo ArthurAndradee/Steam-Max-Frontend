@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Movie } from '../../utils/interfaces';
-import './title.css'
+import './title-page.css'
 import Header from '../../Components/Headers/Standard/header';
 import { faHeart, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,6 +33,7 @@ function TitlePage(movie: Movie) {
                 </div>
                 <div className='d-flex flex-column'>
                     <h3 className='p-3'>{movie.title}</h3>
+                    <img className='title-card ms-3' src={movie.banner} alt={movie.title + `-banner`} />
                     <div className='p-3'>{movie.description}</div>
                 </div>
             </div>
