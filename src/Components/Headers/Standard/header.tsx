@@ -18,8 +18,8 @@ function Header(user: HeaderProps) {
         <div className='mx-2 pb-2 header-link'>Children and Family</div>
       </div>
       <div className='d-flex'>
-        <Link to={'/watchlist'}><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} /></Link>
-        <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} />
+        <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} />
+        <Link to={'/watchlist'} className='d-flex'><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} /></Link>
         <div 
           className='rounded border ms-2 current-profile-icon header-icon' 
           style={{backgroundImage: `url(${user.currentProfilePicture})`}} 

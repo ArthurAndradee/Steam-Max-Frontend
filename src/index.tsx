@@ -12,6 +12,7 @@ import axios from 'axios';
 import TitlePage from './Pages/Title/title-page';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import Watchlist from './Pages/Watchlist/watchlist';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -70,6 +71,10 @@ const App = () => {
     {
       path: '/home',
       element: <Home movies={movies} />,
+    },
+    {
+      path:'/watchlist',
+      element:<Watchlist />
     },
     ...movieRoutes,
     ...titleRoutes,
