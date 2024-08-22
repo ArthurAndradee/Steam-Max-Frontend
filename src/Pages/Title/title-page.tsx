@@ -1,23 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { Movie } from '../../utils/interfaces';
-import { addToWatchlist } from '../../store/watchlist-slice';
 import './title-page.css';
 import Header from '../../Components/Headers/Standard/header';
 import { faHeart, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { RootState } from '../../store/store';
 
 function TitlePage(movie: Movie) {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    
-    const watchlist = useSelector((state: RootState) => state.watchlist.movies);
-    console.log(watchlist)
-
-    const handleAddToWatchlist = () => {
-        dispatch(addToWatchlist(movie));
-    };
 
     return (
         <div className='title-main'>
@@ -33,7 +22,6 @@ function TitlePage(movie: Movie) {
                     </button>
                     <button
                         className='title-button btn btn-light mt-2'
-                        onClick={handleAddToWatchlist}
                     >
                         <FontAwesomeIcon icon={faHeart} className='ps-1' />
                         <div className='ps-2'>Add to Watchlist</div>

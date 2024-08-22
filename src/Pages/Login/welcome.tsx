@@ -16,14 +16,12 @@ function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }), // Include password in the request body
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
-      console.log('Response Data:', data);
-      console.log('Response Status:', response.status);
 
-      if (response.ok && data.token) { // Check if the response is OK and contains a token
+      if (response.ok && data.token) {
         localStorage.setItem('token', data.token);
         navigate('/profile-picker');
       } else {
