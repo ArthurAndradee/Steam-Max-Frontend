@@ -1,7 +1,8 @@
 import Header from '../../Components/Headers/Standard/header';
 import TitleSlider from '../../Components/Titles-Slider/title-slider';
 import { userProfiles } from '../../Database/profiles';
-import { HomeProps, Movie } from '../../utils/interfaces';
+import { Movie } from '../../utils/interfaces/objects';
+import { HomeProps } from '../../utils/interfaces/components';
 import './home.css';
 
 function Home({ movies }: HomeProps) {

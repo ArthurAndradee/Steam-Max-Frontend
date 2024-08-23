@@ -4,38 +4,27 @@ import reportWebVitals from './reportWebVitals';
 import Home from './Pages/Home/home';
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import Player from './Pages/Title-Player/player';
-import { Movie } from './utils/interfaces';
+import { Movie } from './utils/interfaces/objects';
 import './index.css';
 import Login from './Pages/Login/login';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
-import axios from 'axios';
 import TitlePage from './Pages/Title/title-page';
 import Watchlist from './Pages/Watchlist/watchlist';
+import { getMovies, generateMovieRoutes } from './utils/functions/movies'; // Importing the functions
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const App = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  
-  useEffect(()=> {
-    getMovies()
-  },[])
-  
-  const getMovies = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/movies/')
-      setMovies(response.data)
-    } catch (error) {
-      console.error('Erro ferching movies: ', error)
-    }
-  }
 
-  const generateMovieRoutes = (movies: Movie[]): RouteObject[] => {
-    return movies.map(movie => ({
-      path: `/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`,
-      element: <Player trailerUrl={`http://localhost:5000/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} title={movie.title} />,
-    }));
-  };
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const fetchedMovies = await getMovies();
+      setMovies(fetchedMovies);
+    };
+
+    fetchMovies();
+  }, []);
 
   const movieRoutes = [
     ...generateMovieRoutes(movies),
@@ -44,18 +33,18 @@ const App = () => {
   const titleRoutes = movies.map((movie) => ({
     path: `/titles/${movie.title}`,
     element: (
-      <TitlePage 
-        title={movie.title} 
-        mainCast={movie.mainCast} 
-        genre={movie.genre} 
-        banner={movie.banner} 
-        ageRating={movie.ageRating} 
-        rating={movie.rating} 
-        description={movie.description} 
+      <TitlePage
+        _id={movie._id}
+        title={movie.title}
+        mainCast={movie.mainCast}
+        genre={movie.genre}
+        banner={movie.banner}
+        ageRating={movie.ageRating}
+        rating={movie.rating}
+        description={movie.description}
       />
     )
-  }))
-  
+  }));
 
   const router = createBrowserRouter([
     {
@@ -83,7 +72,7 @@ const App = () => {
 
 root.render(
   <React.StrictMode>
-      <App />
+    <App />
   </React.StrictMode>
 );
 

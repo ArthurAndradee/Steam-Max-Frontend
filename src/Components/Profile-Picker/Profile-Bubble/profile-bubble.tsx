@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ProfileBubbleProps } from '../../../utils/interfaces';
+import { ProfileBubbleProps } from '../../../utils/interfaces/components';
 import './profile-bubble.css';
 
 function ProfileBubble(user: ProfileBubbleProps) {

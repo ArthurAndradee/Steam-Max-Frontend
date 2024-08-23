@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { Movie } from '../../utils/interfaces';
+import { Movie } from '../../utils/interfaces/objects';
 import './title-page.css';
 import Header from '../../Components/Headers/Standard/header';
 import { faHeart, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { addToWatchlist } from '../../utils/functions';
+import { addToWatchlist } from '../../utils/functions/watchlist';
 
 function TitlePage(movie: Movie) {
     const navigate = useNavigate();

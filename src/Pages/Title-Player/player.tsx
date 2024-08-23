@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PlayerProps } from '../../utils/interfaces';
+import { PlayerProps } from '../../utils/interfaces/components';
 import './player.css';
 
 function Player({ trailerUrl, title }: PlayerProps) {
