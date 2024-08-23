@@ -26,7 +26,7 @@ const App = () => {
       const response = await axios.get('http://localhost:5000/movies/')
       setMovies(response.data)
     } catch (error) {
-      console.error('Erro ferching products: ', error)
+      console.error('Erro ferching movies: ', error)
     }
   }
 

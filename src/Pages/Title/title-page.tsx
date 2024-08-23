@@ -4,9 +4,14 @@ import './title-page.css';
 import Header from '../../Components/Headers/Standard/header';
 import { faHeart, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { addToWatchlist } from '../../utils/functions';
 
 function TitlePage(movie: Movie) {
     const navigate = useNavigate();
+
+    const handleAddToWatchlist = () => {
+        addToWatchlist(movie);
+      };
 
     return (
         <div className='title-main'>
@@ -21,7 +26,8 @@ function TitlePage(movie: Movie) {
                         <div className='ps-2'>Watch now</div>
                     </button>
                     <button
-                        className='title-button btn btn-light mt-2'
+                        onClick={handleAddToWatchlist}
+                        className='title-button btn btn-danger mt-2'
                     >
                         <FontAwesomeIcon icon={faHeart} className='ps-1' />
                         <div className='ps-2'>Add to Watchlist</div>
