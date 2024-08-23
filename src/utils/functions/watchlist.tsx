@@ -1,7 +1,32 @@
 import { Movie } from "../interfaces/objects";
 
+export async function fetchWatchlist() {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    throw new Error('User not logged in');
+  }
+
+  try {
+    const response = await fetch('http://localhost:5000/watchlist', {
+      headers: { 'Authorization': `Bearer ${token}`,},
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    return data.watchlist;
+  } catch (error) {
+    console.error('Failed to fetch watchlist:', error);
+    throw error;
+  }
+}
+
 export async function addToWatchlist(movie: Movie) {
   const token = localStorage.getItem('token');
+
   if (!token) {
     console.error('User not logged in');
     return;
@@ -10,10 +35,7 @@ export async function addToWatchlist(movie: Movie) {
   try {
     const response = await fetch('http://localhost:5000/watchlist/movies', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, },
       body: JSON.stringify({ movie }),
     });
 
@@ -40,10 +62,7 @@ export async function removeFromWatchlist(movieId: string) {
   try {
     const response = await fetch('http://localhost:5000/watchlist/watchlist/movies', {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, },
       body: JSON.stringify({ movieId }),
     });
 

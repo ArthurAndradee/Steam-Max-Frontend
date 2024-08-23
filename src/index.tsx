@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Home from './Pages/Home/home';
-import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
-import Player from './Pages/Title-Player/player';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Movie } from './utils/interfaces/objects';
 import './index.css';
 import Login from './Pages/Login/login';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import TitlePage from './Pages/Title/title-page';
 import Watchlist from './Pages/Watchlist/watchlist';
-import { getMovies, generateMovieRoutes } from './utils/functions/movies'; // Importing the functions
+import { getMovies, generateMovieRoutes } from './utils/functions/movies';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -61,7 +60,7 @@ const App = () => {
     },
     {
       path:'/watchlist',
-      element:<Watchlist />
+      element:<Watchlist />, 
     },
     ...movieRoutes,
     ...titleRoutes,

@@ -7,3 +7,19 @@
     background: linear-gradient(0deg, rgba(29,1,1,1) 0%, rgba(28,1,1,1) 37%, rgba(0,0,0,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1d0101",endColorstr="#000000",GradientType=1);
 }
+
+.watchlist-grid {
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 0fr));
+    grid-row-gap: 10px;
+}
+
+.watchlist-title-card {
+    height: 15rem;
+    width:  10rem;
+}
+
+.title-card:hover {
+  cursor: pointer;
+}
