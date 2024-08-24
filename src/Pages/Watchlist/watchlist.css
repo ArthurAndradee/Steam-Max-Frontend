@@ -18,8 +18,12 @@
 .watchlist-title-card {
     height: 15rem;
     width:  10rem;
+
+    transition: all 300ms;
 }
 
-.title-card:hover {
+.watchlist-title-card:hover {
   cursor: pointer;
+
+  transform: scale(1.2);
 }

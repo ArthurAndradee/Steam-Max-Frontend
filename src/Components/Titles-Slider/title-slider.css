@@ -24,8 +24,11 @@
 .title-card {
   height: 10rem;
   width:  7rem;
+  
+  transition: all 300ms;
 }
 
 .title-card:hover {
+  transform: scale(1.2);
   cursor: pointer;
 }

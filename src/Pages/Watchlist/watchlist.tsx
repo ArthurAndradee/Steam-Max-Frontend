@@ -26,13 +26,12 @@ function Watchlist() {
     <div className='watchlist-main'>
       <Header currentProfilePicture={''} />
       <div className='p-5'>
-        <h1 className='display-6 text-light mb-4'>My Watchlist</h1>
+        <h1 className='display-6 text-light mb-5'>My Watchlist</h1>
         {error && <p className="error">{error}</p>}
         <div className='watchlist-grid'>
           {watchlist.map(movie => (
             <Link to={`/titles/${movie.title}`} key={movie.title}>
               <img src={movie.banner} alt={movie.title} className="watchlist-title-card" />
-              <div style={{ width: '0px' }} className="border"></div>
             </Link>
           ))}
         </div>

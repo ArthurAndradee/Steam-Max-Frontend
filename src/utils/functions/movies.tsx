@@ -24,4 +24,3 @@ export const generateMovieRoutes = (movies: Movie[]): RouteObject[] => {
     ),
   }));
 };
-

@@ -29,8 +29,9 @@ function TitleSlider({ movies }: Movies) {
       <Slider {...settings} className="mx-4">
         {movies.map((movie) => (
           <Link to={`/titles/${movie.title}`} key={movie.title}>
-            <img src={movie.banner} alt={movie.title} className="title-card" />
-            <div style={{ width: '1px' }} className="border"></div>
+            <div style={{height:'11rem', width:'9rem'}}>
+              <img src={movie.banner} alt={movie.title} className="title-card mt-3" />
+            </div>
           </Link>
         ))}
       </Slider>
