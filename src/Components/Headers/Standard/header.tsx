@@ -10,12 +10,12 @@ interface HeaderProps {
 function Header(user: HeaderProps) {
   return (
     <div className='d-flex py-4 px-5 align-items-center justify-content-between'>
-      <h3 className='text-danger'>StreamMax</h3>
+      <h2 className='text-danger'>StreamMax</h2>
       <div className='d-flex'>
-        <div className='mx-2 pb-2 header-link'>Home</div>
-        <div className='mx-2 pb-2 header-link'>Series</div>
-        <div className='mx-2 pb-2 header-link'>Movies</div>
-        <div className='mx-2 pb-2 header-link'>Children and Family</div>
+        <div className='mx-2 pb-2'><Link to={'/home'} className='header-link'>Home</Link></div>
+        <div className='mx-2 pb-2'><Link to={'/home'} className='header-link'>Series</Link></div>
+        <div className='mx-2 pb-2'><Link to={'/home'} className='header-link'>Movies</Link></div>
+        <div className='mx-2 pb-2'><Link to={'/home'} className='header-link'>Children  and Family</Link></div>
       </div>
       <div className='d-flex'>
         <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} />
