@@ -7,7 +7,7 @@ import { Movie } from './utils/interfaces/objects';
 import './index.css';
 import Login from './Pages/Login/login';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
-import TitlePage from './Pages/Title/title-page';
+import TitlePage from './Pages/Title-Page/title-page';
 import Watchlist from './Pages/Watchlist/watchlist';
 import { getMovies, generateMovieRoutes } from './utils/functions/movies';
 
