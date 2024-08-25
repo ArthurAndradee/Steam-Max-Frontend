@@ -1,6 +1,5 @@
 import Header from '../../Components/Headers/Standard/header';
 import TitleSlider from '../../Components/Titles-Slider/title-slider';
-import { userProfiles } from '../../Database/profiles';
 import { Movie } from '../../utils/interfaces/objects';
 import { HomeProps } from '../../utils/interfaces/components';
 import './home.css';
@@ -16,7 +15,7 @@ function Home({ movies }: HomeProps) {
 
   return (
     <div className='home-main'>
-      <Header currentProfilePicture={userProfiles[0].userPicture} />
+      <Header/>
       
       <div className='mx-5 my-2 ps-4 text-light display-6' style={{ fontSize: '1rem' }}>Romance</div>
       <TitleSlider movies={romanceMovies} />

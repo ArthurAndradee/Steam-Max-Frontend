@@ -27,7 +27,7 @@ function Watchlist() {
 
   return (
     <div className='watchlist-main'>
-      <Header currentProfilePicture={''} />
+      <Header />
       <div className='p-5'>
         <h1 className='display-6 text-light mb-5'>My Watchlist</h1>
         {error && <p className="error">{error}</p>}

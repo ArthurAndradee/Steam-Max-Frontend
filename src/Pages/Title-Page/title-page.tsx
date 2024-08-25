@@ -50,7 +50,7 @@ function TitlePage(currentMovie: Movie) {
 
   return (
     <div className='title-main'>
-      <Header currentProfilePicture={''} />
+      <Header />
       <div className='px-5 text-light d-flex flex-row'>
         <div className='pt-3'>
           <button
