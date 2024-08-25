@@ -47,9 +47,7 @@ export async function addToWatchlist(profileId: string, movie: Movie) {
 
     const data = await response.json();
 
-    if (response.ok) {
-      console.log('Movie added to watchlist:', data.watchlist);
-    } else {
+    if (!response.ok) {
       console.error('Failed to add movie to watchlist:', data.message);
     }
   } catch (error) {
@@ -78,8 +76,6 @@ export async function removeFromWatchlist(profileName: string, movieId: string) 
     const data = await response.json();
 
     if (response.ok) {
-      console.log('Movie removed from watchlist:', data.watchlist);
-    } else {
       console.error('Failed to remove movie from watchlist:', data.message);
     }
   } catch (error) {
