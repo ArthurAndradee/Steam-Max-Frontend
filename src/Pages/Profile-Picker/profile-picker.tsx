@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { userProfiles } from '../../Database/profiles';
+// ProfilePicker.tsx
+import { useNavigate, useLocation } from 'react-router-dom';
 import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profile-bubble';
 import './profile-picker.css';
+import { Profile } from '../../utils/interfaces/objects';
 
 function ProfilePicker() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const profiles = location.state?.profiles || [];
 
   const handleProfileSelect = (userName: string) => {
     localStorage.setItem('selectedProfile', userName);
@@ -15,12 +18,11 @@ function ProfilePicker() {
     <div className='main-profile-picker d-flex flex-column align-items-center text-light'>
       <h3 className='profile-title'>Who is watching?</h3>
       <div className='profiles-container'>
-        {userProfiles.map((user) => (
+        {profiles.map((profile: Profile) => (
           <ProfileBubble
-            key={user.userName}
-            userName={user.userName}
-            userPicture={user.userPicture}
-            onClick={() => handleProfileSelect(user.userName)}
+            userName={profile.name}
+            userPicture={profile.picture}
+            onClick={() => handleProfileSelect(profile.name)}
           />
         ))}
       </div>

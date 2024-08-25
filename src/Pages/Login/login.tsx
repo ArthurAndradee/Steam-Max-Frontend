@@ -1,3 +1,4 @@
+// Login.tsx
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import WelcomeHeader from '../../Components/Headers/Login/welcome';
@@ -23,7 +24,7 @@ function Login() {
 
       if (response.ok && data.token) {
         localStorage.setItem('token', data.token);
-        navigate('/profile-picker');
+        navigate('/profile-picker', { state: { profiles: data.profiles } });
       } else {
         console.error('Login failed:', data.message || 'An error occurred');
       }
@@ -34,32 +35,34 @@ function Login() {
 
   return (
     <div className='welcome-main'>
+      <div className='welcome-main'>
       <WelcomeHeader />
-      <div className='d-flex flex-column align-items-center m-5'>
-        <h3 className='text-light display-2'>Unlimited movies, TV shows, and more</h3>
-        <p className='text-light mt-3 mt-5' style={{ fontSize: '1.75rem' }}>Watch anywhere. Cancel anytime</p>
-        <p className='text-light mb-3 mb-5' style={{ fontSize: '1.75rem' }}>Ready to watch? Enter your email and password to log in.</p>
-        <form className='d-flex flex-column align-items-center w-50' onSubmit={handleLogin}>
-          <input
-            type="email"
-            className="form-control mb-3 w-75"
-            placeholder="Your email here"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            className="form-control mb-3 w-75"
-            placeholder="Your password here"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type='submit' className='btn btn-lg btn-danger w-25'>
-            Log In {'>'}
-          </button>
-        </form>
+        <div className='d-flex flex-column align-items-center m-5'>
+          <h3 className='text-light display-2'>Unlimited movies, TV shows, and more</h3>
+          <p className='text-light mt-3 mt-5' style={{ fontSize: '1.75rem' }}>Watch anywhere. Cancel anytime</p>
+          <p className='text-light mb-3 mb-5' style={{ fontSize: '1.75rem' }}>Ready to watch? Enter your email and password to log in.</p>
+          <form className='d-flex flex-column align-items-center w-50' onSubmit={handleLogin}>
+            <input
+              type="email"
+              className="form-control mb-3 w-75"
+              placeholder="Your email here"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              className="form-control mb-3 w-75"
+              placeholder="Your password here"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button type='submit' className='btn btn-lg btn-danger w-25'>
+              Log In {'>'}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

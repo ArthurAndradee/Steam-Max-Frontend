@@ -1,6 +1,6 @@
 import { Movie } from "../interfaces/objects";
 
-export async function fetchWatchlist() {
+export async function fetchWatchlist(profileId: string) {
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -8,13 +8,16 @@ export async function fetchWatchlist() {
   }
 
   try {
-    const response = await fetch('http://localhost:5000/watchlist', {
-      headers: { 'Authorization': `Bearer ${token}`,},
+    const response = await fetch(`http://localhost:5000/watchlist/${profileId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
     });
 
     const data = await response.json();
+
     if (!response.ok) {
-      throw new Error(data.message);
+      throw new Error(data);
     }
 
     return data.watchlist;
@@ -24,7 +27,7 @@ export async function fetchWatchlist() {
   }
 }
 
-export async function addToWatchlist(movie: Movie) {
+export async function addToWatchlist(profileId: string, movie: Movie) {
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -33,9 +36,12 @@ export async function addToWatchlist(movie: Movie) {
   }
 
   try {
-    const response = await fetch('http://localhost:5000/watchlist/movies', {
+    const response = await fetch(`http://localhost:5000/watchlist/${profileId}/add`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
       body: JSON.stringify({ movie }),
     });
 
@@ -51,7 +57,7 @@ export async function addToWatchlist(movie: Movie) {
   }
 }
 
-export async function removeFromWatchlist(movieId: string) {
+export async function removeFromWatchlist(profileName: string, movieId: string) {
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -60,9 +66,12 @@ export async function removeFromWatchlist(movieId: string) {
   }
 
   try {
-    const response = await fetch('http://localhost:5000/watchlist/watchlist/movies', {
+    const response = await fetch(`http://localhost:5000/watchlist/${profileName}/delete`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
       body: JSON.stringify({ movieId }),
     });
 

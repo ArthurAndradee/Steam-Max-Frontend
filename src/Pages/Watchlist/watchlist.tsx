@@ -9,18 +9,21 @@ function Watchlist() {
   const [watchlist, setWatchlist] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  const currentProfile = localStorage.getItem('selectedProfile')
+  
   useEffect(() => {
     const loadWatchlist = async () => {
-      try {
-        const watchlistData = await fetchWatchlist();
+      if(currentProfile)
+        try {
+        const watchlistData = await fetchWatchlist(currentProfile);
         setWatchlist(watchlistData);
       } catch (error) {
         setError('Failed to fetch watchlist');
       }
     };
 
-    loadWatchlist();
-  }, []);
+    loadWatchlist(); 
+  }, [currentProfile]);
 
   return (
     <div className='watchlist-main'>

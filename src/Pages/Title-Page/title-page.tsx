@@ -11,11 +11,13 @@ function TitlePage(currentMovie: Movie) {
   const navigate = useNavigate();
   const [isInWatchlist, setIsInWatchlist] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const currentProfile = localStorage.getItem('selectedProfile')
 
   useEffect(() => {
     const checkWatchlist = async () => {
+      if(currentProfile)
       try {
-        const watchlist = await fetchWatchlist();
+        const watchlist = await fetchWatchlist(currentProfile);
         const movieInWatchlist = watchlist.some((movie: Movie) => movie._id === currentMovie._id);
         setIsInWatchlist(movieInWatchlist);
       } catch (error) {
@@ -24,11 +26,12 @@ function TitlePage(currentMovie: Movie) {
     };
 
     checkWatchlist();
-  }, [currentMovie._id]);
+  }, [currentMovie._id, currentProfile]);
 
   const handleAddToWatchlist = async () => {
+    if(currentProfile)
     try {
-      await addToWatchlist(currentMovie);
+      await addToWatchlist(currentProfile, currentMovie);
       setIsInWatchlist(true);
     } catch (error) {
       setError('Failed to add movie to watchlist');
@@ -36,8 +39,9 @@ function TitlePage(currentMovie: Movie) {
   };
 
   const handleRemoveFromWatchlist = async () => {
+    if(currentProfile)
     try {
-      await removeFromWatchlist(currentMovie._id);
+      await removeFromWatchlist(currentProfile,currentMovie._id);
       setIsInWatchlist(false);
     } catch (error) {
       setError('Failed to remove movie from watchlist');

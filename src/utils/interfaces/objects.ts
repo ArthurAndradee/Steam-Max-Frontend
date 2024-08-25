@@ -12,3 +12,8 @@ export interface Movie {
 export interface Movies {
     movies: Movie[]
 }
+
+export interface Profile {
+    name: string,
+    picture: string,
+}
