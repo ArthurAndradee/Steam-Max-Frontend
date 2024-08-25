@@ -10,7 +10,6 @@ import Header from '../../Components/Headers/Standard/header';
 function TitlePage(currentMovie: Movie) {
   const navigate = useNavigate();
   const [isInWatchlist, setIsInWatchlist] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const currentProfile = localStorage.getItem('selectedProfile')
 
   useEffect(() => {
@@ -21,7 +20,7 @@ function TitlePage(currentMovie: Movie) {
         const movieInWatchlist = watchlist.some((movie: Movie) => movie._id === currentMovie._id);
         setIsInWatchlist(movieInWatchlist);
       } catch (error) {
-        setError(JSON.stringify(error));
+        console.log(error)
       }
     };
 
@@ -34,7 +33,7 @@ function TitlePage(currentMovie: Movie) {
       await addToWatchlist(currentProfile, currentMovie);
       setIsInWatchlist(true);
     } catch (error) {
-      setError('Failed to add movie to watchlist');
+      console.log(error)
     }
   };
 
@@ -44,7 +43,7 @@ function TitlePage(currentMovie: Movie) {
       await removeFromWatchlist(currentProfile,currentMovie._id);
       setIsInWatchlist(false);
     } catch (error) {
-      setError('Failed to remove movie from watchlist');
+      console.log(error)
     }
   };
 
@@ -83,7 +82,7 @@ function TitlePage(currentMovie: Movie) {
         </div>
         <div className='d-flex flex-column'>
           <h3 className='p-3'>{currentMovie.title}</h3>
-          <img className='title-card ms-3' src={currentMovie.banner} alt={currentMovie.title + '-banner'} />
+          <img className='title-page-title-card ms-3' src={currentMovie.banner} alt={currentMovie.title + '-banner'} />
           <div className='p-3'>{currentMovie.description}</div>
         </div>
       </div>
