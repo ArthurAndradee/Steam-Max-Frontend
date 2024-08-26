@@ -4,7 +4,7 @@ import './profile-picker.css';
 import { Profile } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
 import ProfileForm from '../../Components/Profile-Picker/Profile-Form/profile-form';
-import { fetchProfiles } from '../../utils/functions/profile'
+import { deleteProfile, fetchProfiles } from '../../utils/functions/profile'
 
 function ProfilePicker() {
   const navigate = useNavigate();
@@ -25,6 +25,16 @@ function ProfilePicker() {
     loadProfiles();
   }, []);
 
+  const handleProfileDelete = async (profileName: string) => {
+    try {
+      await deleteProfile(profileName);
+      setProfiles(prevProfiles => prevProfiles.filter(profile => profile.name !== profileName));
+    } catch (error) {
+      console.error('Error deleting profile:', error);
+    }
+  };
+
+
   const handleProfileSelect = (userName: string) => {
     localStorage.setItem('selectedProfile', userName);
     navigate('/home');
@@ -35,12 +45,15 @@ function ProfilePicker() {
       <h3 className='profile-title'>Who is watching?</h3>
       <div className='profiles-container'>
         {profiles.map((profile: Profile) => (
-          <ProfileBubble
-            key={profile.name}
-            userName={profile.name}
-            userPicture={profile.picture}
-            onClick={() => handleProfileSelect(profile.name)}
-          />
+          <div>
+            <ProfileBubble
+              key={profile.name}
+              userName={profile.name}
+              userPicture={profile.picture}
+              onClick={() => handleProfileSelect(profile.name)}
+            />
+            <button onClick={() => handleProfileDelete(profile.name)} className='btn btn-danger'>Delete</button>
+          </div>
         ))}
         <div
           className={`profile-edit-container ${isHovered ? 'hovered' : ''}`}

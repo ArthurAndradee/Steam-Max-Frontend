@@ -7,7 +7,7 @@ function ProfileForm() {
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfileName(event.target.value);
-  };
+  }; 
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
