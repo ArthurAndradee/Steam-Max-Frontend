@@ -51,7 +51,7 @@ function ProfileForm() {
   return (
     <div className="modal-container z-2">
       <form className='d-flex flex-column' onSubmit={handleSubmit}>
-        <h5 className="modal-title ms-5 mt-4">Add profile</h5>
+        <h5 className="modal-title m-4 text-center">New Profile</h5>
         <div className="form-group mx-5 my-2">
           <label htmlFor="profileName" className='pb-1'>Name</label>
           <input

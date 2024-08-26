@@ -3,14 +3,17 @@ import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profil
 import './profile-picker.css';
 import { Profile } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
-import ProfileForm from '../../Components/Profile-Picker/Profile-Form/profile-form';
+import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-form';
 import { deleteProfile, fetchProfiles } from '../../utils/functions/profile'
+import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
 
 function ProfilePicker() {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [isHovered, setIsHovered] = useState(false);
   const [isUserAddingProfile, setIsUserAddingProfile] = useState(false);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [profileToEdit, setProfileToEdit] = useState<Profile | null>(null);
 
   useEffect(() => {
     const loadProfiles = async () => {
@@ -34,6 +37,17 @@ function ProfilePicker() {
     }
   };
 
+  const handleProfileEdit = (profile: Profile) => {
+    setProfileToEdit(profile);
+    setIsEditingProfile(true);
+  };
+
+  const handleProfileUpdate = (updatedProfile: Profile) => {
+    setProfiles(profiles.map(profile =>
+      profile.name === profileToEdit?.name ? updatedProfile : profile
+    ));
+    setIsEditingProfile(false);
+  };
 
   const handleProfileSelect = (userName: string) => {
     localStorage.setItem('selectedProfile', userName);
@@ -52,6 +66,7 @@ function ProfilePicker() {
               userPicture={profile.picture}
               onClick={() => handleProfileSelect(profile.name)}
             />
+            <button onClick={() => handleProfileEdit(profile)} className='btn btn-success'>Edit</button>
             <button onClick={() => handleProfileDelete(profile.name)} className='btn btn-danger'>Delete</button>
           </div>
         ))}
@@ -66,8 +81,16 @@ function ProfilePicker() {
           </div>
         </div>
       </div>
-      {isUserAddingProfile && <div className='dark-background' />}
+      {(isUserAddingProfile || (isEditingProfile && profileToEdit)) && <div className='dark-background' />}
       {isUserAddingProfile && <ProfileForm />}
+      {isEditingProfile && profileToEdit && (
+        <ProfileEditForm
+          currentName={profileToEdit.name}
+          currentPicture={profileToEdit.picture}
+          onUpdateSuccess={handleProfileUpdate}
+          onCancel={() => setIsEditingProfile(false)}
+        />
+      )}
       <button
         className='btn btn-dark edit-profile-button'
         style={{ width: '150px' }}
