@@ -26,6 +26,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
+    "streaming-service": "file:",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
@@ -33,7 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-server": "node index.js"
   },
   "eslintConfig": {
     "extends": [

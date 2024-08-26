@@ -5,7 +5,7 @@ export async function fetchProfile(profileName: string) {
   }
 
   try {
-    const response = await fetch(`http://localhost:5000/profiles?profileName=${encodeURIComponent(profileName)}`, { // Sending profileName as query parameter
+    const response = await fetch(`http://localhost:5000/users?profileName=${encodeURIComponent(profileName)}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -16,6 +16,30 @@ export async function fetchProfile(profileName: string) {
     return await response.json();
   } catch (error) {
     console.error('Error fetching profile:', error);
+    throw error;
+  }
+}
+
+export async function fetchProfiles() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('User not logged in');
+  }
+
+  try {
+    const response = await fetch('http://localhost:5000/profiles/get', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch profiles');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching profiles:', error);
     throw error;
   }
 }

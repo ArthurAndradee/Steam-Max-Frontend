@@ -1,4 +1,3 @@
-// Login.tsx
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import WelcomeHeader from '../../Components/Headers/Login/welcome';
@@ -24,7 +23,7 @@ function Login() {
 
       if (response.ok && data.token) {
         localStorage.setItem('token', data.token);
-        navigate('/profile-picker', { state: { profiles: data.profiles } });
+        navigate('/profile-picker');
       } else {
         console.error('Login failed:', data.message || 'An error occurred');
       }

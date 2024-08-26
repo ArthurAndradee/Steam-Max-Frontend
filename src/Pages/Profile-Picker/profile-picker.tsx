@@ -1,15 +1,29 @@
-// ProfilePicker.tsx
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profile-bubble';
 import './profile-picker.css';
 import { Profile } from '../../utils/interfaces/objects';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ProfileForm from '../../Components/Profile-Picker/Profile-Form/profile-form';
+import { fetchProfiles } from '../../utils/functions/profile'
 
 function ProfilePicker() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const profiles = location.state?.profiles || [];
+  const [profiles, setProfiles] = useState<Profile[]>([]);
   const [isHovered, setIsHovered] = useState(false);
+  const [isUserAddingProfile, setIsUserAddingProfile] = useState(false);
+
+  useEffect(() => {
+    const loadProfiles = async () => {
+      try {
+        const profilesData = await fetchProfiles();
+        setProfiles(profilesData);
+      } catch (error) {
+        console.error('Error fetching profiles:', error);
+      }
+    };
+
+    loadProfiles();
+  }, []);
 
   const handleProfileSelect = (userName: string) => {
     localStorage.setItem('selectedProfile', userName);
@@ -22,20 +36,32 @@ function ProfilePicker() {
       <div className='profiles-container'>
         {profiles.map((profile: Profile) => (
           <ProfileBubble
+            key={profile.name}
             userName={profile.name}
             userPicture={profile.picture}
             onClick={() => handleProfileSelect(profile.name)}
           />
         ))}
-        <div className={`profile-edit-container ${isHovered ? 'hovered' : ''}`}  onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
-          <div className='profile-edit-main' >
+        <div
+          className={`profile-edit-container ${isHovered ? 'hovered' : ''}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className='profile-edit-main' onClick={() => setIsUserAddingProfile(true)}>
             <div className='profile-edit-picture'>+</div>
-            <div className='profile-edit-name'>Adicionar</div>
+            <div className='profile-edit-name'>Add Profile</div>
           </div>
         </div>
       </div>
-      <button className='btn btn-dark edit-profile-button' style={{width:'150px'}} onClick={() => navigate('/home')}>Editar</button>
+      {isUserAddingProfile && <div className='dark-background' />}
+      {isUserAddingProfile && <ProfileForm />}
+      <button
+        className='btn btn-dark edit-profile-button'
+        style={{ width: '150px' }}
+        onClick={() => navigate('/home')}
+      >
+        Edit
+      </button>
     </div>
   );
 }
