@@ -8,7 +8,6 @@ import { fetchProfile } from '../../../utils/functions/profile'; // Adjust the i
 function Header() {
   const [profile, setProfile] = useState({ name: '', picture: '' });
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
 
   useEffect(() => {
     async function loadProfile() {
@@ -18,7 +17,7 @@ function Header() {
         const profileData = await fetchProfile(currentProfile);
         setProfile(profileData);
       } catch (err) {
-        setError(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       } finally {
         setLoading(false);
       }
@@ -28,7 +27,6 @@ function Header() {
   }, []);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className='d-flex py-4 px-5 align-items-center justify-content-between'>
@@ -42,10 +40,14 @@ function Header() {
       <div className='d-flex'>
         <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} />
         <Link to={'/watchlist'} className='d-flex'><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} /></Link>
-        <div 
-          className='rounded border ms-2 current-profile-icon header-icon' 
-          style={{backgroundImage: `url(${profile.picture})`}} 
-        />
+        {loading ? (
+          <span className="loading-spinner ms-2"></span>
+        ): (
+          <div 
+            className='rounded border ms-2 current-profile-icon header-icon' 
+            style={{backgroundImage: `url(${profile.picture})`}} 
+          />
+        )}
       </div>
     </div>
   );

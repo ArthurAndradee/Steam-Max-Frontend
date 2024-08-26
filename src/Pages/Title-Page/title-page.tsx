@@ -28,20 +28,22 @@ function TitlePage(currentMovie: Movie) {
   }, [currentMovie._id, currentProfile]);
 
   const handleAddToWatchlist = async () => {
+    console.log(isInWatchlist)
     if(currentProfile)
     try {
-      await addToWatchlist(currentProfile, currentMovie);
       setIsInWatchlist(true);
+      await addToWatchlist(currentProfile, currentMovie);
     } catch (error) {
       console.log(error)
     }
   };
 
   const handleRemoveFromWatchlist = async () => {
+    console.log(isInWatchlist)
     if(currentProfile)
     try {
-      await removeFromWatchlist(currentProfile,currentMovie._id);
       setIsInWatchlist(false);
+      await removeFromWatchlist(currentProfile,currentMovie._id);
     } catch (error) {
       console.log(error)
     }
