@@ -19,6 +19,83 @@
     display: flex;
 }
 
+.profile-picker-edit-sign {
+    height: 5rem;
+    width: 7rem;
+    transition: all 300ms;
+    border-radius: 50px;
+}
+
+.profile-edit-container, .profile-edit-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-edit-container {
+    height:17.5rem;
+    width: 10rem;
+}
+
+.profile-edit-main {
+    flex-direction: column;
+
+    position: absolute;
+
+    margin-top: 17.5rem;
+}
+
+.profile-edit-picture {
+    height: 7rem;
+    width: 7rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 5rem;
+    background-color: #212121;
+
+    transition: all 300ms;
+    border-radius: 50%;
+
+    padding-bottom: 1rem;
+}
+
+.profile-edit-name {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    transition: all 300ms;
+}
+
+.profile-edit-container.hovered {
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(64,0,0,0.75) 23%, rgba(63,0,0,0.74) 77%, rgba(0,0,0,0) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(64,0,0,0.75) 23%, rgba(63,0,0,0.74) 77%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(64,0,0,0.75) 23%, rgba(63,0,0,0.74) 77%, rgba(0,0,0,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+    cursor: pointer;
+}
+
+.profile-edit-main:hover .profile-edit-picture {
+    -webkit-box-shadow: 0px 0px 75px 15px rgba(110,0,0,1);
+    -moz-box-shadow: 0px 0px 75px 15px rgba(110,0,0,1);
+    box-shadow: 0px 0px 75px 15px rgba(110,0,0,1);
+    height: 8.5rem;
+    width: 8.5rem;
+}
+
+.profile-edit-main:hover .profile-edit-name {
+    font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+    .profile-edit-main {
+        position: relative;
+    }
+}
+
+
 .edit-profile-button {
     margin-top: 10rem;
 }
