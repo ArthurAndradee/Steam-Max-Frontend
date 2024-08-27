@@ -32,8 +32,6 @@ function Header() {
     loadProfile();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-
   return (
     <div className='d-flex py-4 px-5 align-items-center justify-content-between'>
       <h2 className='text-danger'>StreamMax</h2>
