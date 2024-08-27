@@ -11,8 +11,8 @@ export interface PlayerProps {
 }  
 
 export interface ProfileBubbleProps {
-    userName: string;
-    userPicture: string;
+    name: string;
+    picture: string;
     onClick: () => void
 }
 

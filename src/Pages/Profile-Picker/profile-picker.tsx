@@ -3,7 +3,7 @@ import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profil
 import './profile-picker.css';
 import { Profile } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
-import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-form';
+import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
 import { deleteProfile, fetchProfiles } from '../../utils/functions/profile'
 import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
 
@@ -62,12 +62,14 @@ function ProfilePicker() {
           <div>
             <ProfileBubble
               key={profile.name}
-              userName={profile.name}
-              userPicture={profile.picture}
+              name={profile.name}
+              picture={profile.picture}
               onClick={() => handleProfileSelect(profile.name)}
             />
-            <button onClick={() => handleProfileEdit(profile)} className='btn btn-success'>Edit</button>
-            <button onClick={() => handleProfileDelete(profile.name)} className='btn btn-danger'>Delete</button>
+            <div className='mt-5 pt-5'>
+              <button onClick={() => handleProfileEdit(profile)} className='btn btn-success'>Edit</button>
+              <button onClick={() => handleProfileDelete(profile.name)} className='btn btn-danger'>Delete</button>
+            </div>
           </div>
         ))}
         <div

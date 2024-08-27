@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { updateProfile } from '../../../utils/functions/profile'
+import { updateProfile } from '../../../utils/functions/profile'; // Import the updateProfile function
 
 interface ProfileEditFormProps {
   currentName: string;
@@ -17,22 +17,36 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
     event.preventDefault();
 
     try {
-      let pictureBase64 = currentPicture;
+      const formData = new FormData();
+      formData.append('profileName', currentName);
+      formData.append('newName', name);
+
       if (picture) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          pictureBase64 = reader.result as string;
-        };
-        reader.readAsDataURL(picture);
+        const pictureBase64 = await convertToBase64(picture);
+        formData.append('newPicture', pictureBase64);
+      } else {
+        formData.append('newPicture', currentPicture);
       }
 
-      const updatedProfile = await updateProfile(currentName, { newName: name, newPicture: pictureBase64 });
+      const updatedProfile = await updateProfile(formData);
       onUpdateSuccess(updatedProfile);
-      window.location.reload()
+      
+      // window.location.reload();
     } catch (err) {
       setError('Failed to update profile');
       console.error('Error updating profile:', err);
     }
+  };
+
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result as string);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   };
 
   return (
@@ -60,7 +74,7 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
           />
         </div>
         {error && <div className="text-danger text-center">{error}</div>}
-        <div className="d-flex justify-content-between mx-5 mb-5">
+        <div className="d-flex justify-content-between mx-5">
           <button className='btn btn-light' style={{ width: '10rem' }}>Save</button>
           <button className='btn btn-secondary' style={{ width: '10rem' }} onClick={onCancel}>Cancel</button>
         </div>

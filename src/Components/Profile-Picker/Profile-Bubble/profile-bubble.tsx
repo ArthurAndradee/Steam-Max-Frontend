@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ProfileBubbleProps } from '../../../utils/interfaces/components';
 import './profile-bubble.css';
 
 function ProfileBubble(user: ProfileBubbleProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [profileImageSrc, setProfileImageSrc] = useState<string>('');
   const fallbackImage = 'https://cdn-icons-png.freepik.com/512/10870/10870763.png';
+
+  useEffect(() => {
+    if (user.picture) {
+      if (user.picture.startsWith('data:image')) {
+        setProfileImageSrc(user.picture);
+      } else {
+        setProfileImageSrc(`data:image/png;base64,${user.picture}`);
+      }
+    } else {
+      setProfileImageSrc(fallbackImage);
+    }
+  }, [user.picture]);
 
   return (
     <div
@@ -19,12 +32,12 @@ function ProfileBubble(user: ProfileBubbleProps) {
         <img
           className='profile-picker-picture'
           alt='Profile'
-          src={user.userPicture}
+          src={profileImageSrc}
           onError={(e) => {
             e.currentTarget.src = fallbackImage;
           }}
         />
-        <div className='profile-picker-name'>{user.userName}</div>
+        <div className='profile-picker-name'>{user.name}</div>
       </div>
     </div>
   );

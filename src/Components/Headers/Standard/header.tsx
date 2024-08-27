@@ -6,20 +6,26 @@ import { Link } from 'react-router-dom';
 import { fetchProfile } from '../../../utils/functions/profile'; // Adjust the import path as needed
 
 function Header() {
-  const [profile, setProfile] = useState({ name: '', picture: '' });
   const [loading, setLoading] = useState(true);
+  const [profileImageSrc, setProfileImageSrc] = useState<string>('');
 
   useEffect(() => {
     async function loadProfile() {
-      const currentProfile = localStorage.getItem('selectedProfile')
-      if(currentProfile)
-      try {
-        const profileData = await fetchProfile(currentProfile);
-        setProfile(profileData);
-      } catch (err) {
-        console.log(JSON.stringify(err));
-      } finally {
-        setLoading(false);
+      const currentProfile = localStorage.getItem('selectedProfile');
+      if (currentProfile) {
+        try {
+          const profileData = await fetchProfile(currentProfile);
+          
+          if (profileData.picture.startsWith('data:image')) {
+            setProfileImageSrc(profileData.picture);
+          } else {
+            setProfileImageSrc(`data:image/png;base64,${profileData.picture}`);
+          }
+        } catch (err) {
+          console.log(JSON.stringify(err));
+        } finally {
+          setLoading(false);
+        }
       }
     }
 
@@ -42,10 +48,14 @@ function Header() {
         <Link to={'/watchlist'} className='d-flex'><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} /></Link>
         {loading ? (
           <span className="loading-spinner ms-2"></span>
-        ): (
-          <div 
-            className='rounded border ms-2 current-profile-icon header-icon' 
-            style={{backgroundImage: `url(${profile.picture})`}} 
+        ) : (
+          <img
+            className='rounded border ms-2 current-profile-icon header-icon'
+            src={profileImageSrc}
+            alt="Profile"
+            onError={(e) => {
+              e.currentTarget.src = 'https://cdn-icons-png.freepik.com/512/10870/10870763.png'; // Fallback image URL
+            }}
           />
         )}
       </div>

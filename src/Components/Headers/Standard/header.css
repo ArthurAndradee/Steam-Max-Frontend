@@ -5,6 +5,10 @@
     background-size: cover;
 }
 
+.current-profile-icon:hover {
+    cursor: pointer;
+}
+
 .header-link {
     color: #FFF;
     border-bottom: 1px solid transparent;
@@ -16,10 +20,6 @@
 .header-link:hover {
     cursor: pointer;
     border-bottom: 1px solid #FFF;
-}
-
-.header-icon:hover {
-    cursor: pointer;
 }
 
 .loading-spinner {

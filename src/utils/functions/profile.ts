@@ -5,7 +5,7 @@ export async function fetchProfile(profileName: string) {
   }
 
   try {
-    const response = await fetch(`http://localhost:5000/users?profileName=${encodeURIComponent(profileName)}`, {
+    const response = await fetch(`http://localhost:5000/profiles?profileName=${encodeURIComponent(profileName)}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -44,20 +44,19 @@ export async function fetchProfiles() {
   }
 }
 
-export async function updateProfile(profileName: string, updateData: { newName: string; newPicture?: string }) {
+export const updateProfile = async (formData: FormData) => {
   const token = localStorage.getItem('token');
   if (!token) {
     throw new Error('User not logged in');
   }
 
   try {
-    const response = await fetch(`http://localhost:5000/profiles/update/${encodeURIComponent(profileName)}`, {
+    const response = await fetch(`http://localhost:5000/profiles/update/${encodeURIComponent(formData.get('profileName') as string)}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updateData),
+      body: formData,
     });
 
     if (!response.ok) {
@@ -69,8 +68,7 @@ export async function updateProfile(profileName: string, updateData: { newName: 
     console.error('Error updating profile:', error);
     throw error;
   }
-}
-
+};
 
 export async function deleteProfile(profileName: string) {
   const token = localStorage.getItem('token');
