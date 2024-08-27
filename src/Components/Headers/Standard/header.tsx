@@ -44,18 +44,20 @@ function Header() {
       <div className='d-flex'>
         <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} />
         <Link to={'/watchlist'} className='d-flex'><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} /></Link>
+        <Link to={'/profile-picker'} className='d-flex'>
         {loading ? (
           <span className="loading-spinner ms-2"></span>
         ) : (
           <img
-            className='rounded border ms-2 current-profile-icon header-icon'
-            src={profileImageSrc}
-            alt="Profile"
-            onError={(e) => {
-              e.currentTarget.src = 'https://cdn-icons-png.freepik.com/512/10870/10870763.png'; // Fallback image URL
-            }}
+          className='rounded border ms-2 current-profile-icon header-icon'
+          src={profileImageSrc}
+          alt="Profile"
+          onError={(e) => {
+            e.currentTarget.src = 'https://cdn-icons-png.freepik.com/512/10870/10870763.png'; // Fallback image URL
+          }}
           />
         )}
+        </Link>
       </div>
     </div>
   );
