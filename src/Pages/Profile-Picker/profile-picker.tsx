@@ -4,8 +4,10 @@ import './profile-picker.css';
 import { Profile } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
 import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
-import { deleteProfile, fetchProfiles } from '../../utils/functions/profile'
+import { deleteProfile, fetchProfiles } from '../../utils/functions/profile';
 import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ProfilePicker() {
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ function ProfilePicker() {
   const [isHovered, setIsHovered] = useState(false);
   const [isUserAddingProfile, setIsUserAddingProfile] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [choosingProfileToEdit, setChoosingProfileToEdit] = useState(false);
   const [profileToEdit, setProfileToEdit] = useState<Profile | null>(null);
 
   useEffect(() => {
@@ -59,17 +62,24 @@ function ProfilePicker() {
       <h3 className='profile-title'>Who is watching?</h3>
       <div className='profiles-container'>
         {profiles.map((profile: Profile) => (
-          <div>
+          <div key={profile.name}>
+            <div className={`choosing-profile-to-edit ${choosingProfileToEdit ? 'show' : ''} position-absolute d-flex px-2`} style={{ width: '10rem' }}>
+              <div className='d-flex' style={{ width: '5rem', margin: 'auto' }}>
+                <div className='profile-button-container'>
+                  <FontAwesomeIcon className='profile-interact-button' onClick={() => handleProfileEdit(profile)} icon={faPenToSquare} />
+                </div>
+                <div className='profile-button-container ms-auto'>
+                  <FontAwesomeIcon className='profile-interact-button' onClick={() => handleProfileDelete(profile.name)} icon={faTrashCan} />
+                </div>
+              </div>
+            </div>
             <ProfileBubble
               key={profile.name}
               name={profile.name}
               picture={profile.picture}
               onClick={() => handleProfileSelect(profile.name)}
             />
-            <div className='mt-5 pt-5'>
-              <button onClick={() => handleProfileEdit(profile)} className='btn btn-success'>Edit</button>
-              <button onClick={() => handleProfileDelete(profile.name)} className='btn btn-danger'>Delete</button>
-            </div>
+            <div className='mt-5 pt-5'></div>
           </div>
         ))}
         <div
@@ -96,7 +106,7 @@ function ProfilePicker() {
       <button
         className='btn btn-dark edit-profile-button'
         style={{ width: '150px' }}
-        onClick={() => navigate('/home')}
+        onClick={() => setChoosingProfileToEdit(!choosingProfileToEdit)}
       >
         Edit
       </button>

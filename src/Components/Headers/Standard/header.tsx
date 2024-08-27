@@ -3,7 +3,7 @@ import { faBookmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './header.css';
 import { Link } from 'react-router-dom';
-import { fetchProfile } from '../../../utils/functions/profile'; // Adjust the import path as needed
+import { fetchProfile } from '../../../utils/functions/profile';
 
 function Header() {
   const [loading, setLoading] = useState(true);

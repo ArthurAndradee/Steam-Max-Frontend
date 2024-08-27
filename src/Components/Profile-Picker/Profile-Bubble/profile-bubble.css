@@ -7,6 +7,7 @@
 .profile-picker-container {
     height:17.5rem;
     width: 10rem;
+
 }
 
 .profile-picker-main {
@@ -23,7 +24,7 @@
 }
 
 .profile-picker-name {
-    font-size: 1rem;
+        font-size: 1rem;
     margin-top: 0.5rem;
     transition: all 300ms;
 }

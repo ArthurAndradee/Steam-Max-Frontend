@@ -29,6 +29,29 @@
     display: flex;
 }
 
+.profile-button-container {
+    height: 1.75rem;
+    width:  1.75rem;
+
+    background: #650000;
+    color: #ffffffbf;
+
+    border-radius: 50%;
+    margin-top: 10rem;
+
+    text-align: center;
+}
+
+.profile-interact-button {
+    height: 1rem;
+    width:  1rem;
+
+    z-index: 3;
+
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .profile-picker-edit-sign {
     height: 5rem;
     width: 7rem;
@@ -93,21 +116,32 @@
     box-shadow: 0px 0px 75px 15px rgba(110,0,0,1);
     height: 8.5rem;
     width: 8.5rem;
+    font-size: 6rem;
 }
 
 .profile-edit-main:hover .profile-edit-name {
     font-size: 1.2rem;
 }
 
+.edit-profile-button {
+    margin-top: 2rem;
+}
+
+.choosing-profile-to-edit {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.choosing-profile-to-edit.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media only screen and (max-width: 1000px) {
     .profile-edit-main {
         position: relative;
     }
-}
-
-
-.edit-profile-button {
-    margin-top: 10rem;
 }
 
 @media only screen and (max-width: 1000px) {
