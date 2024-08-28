@@ -25,6 +25,7 @@
     "react-router": "^6.26.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
+    "reactjs-media": "^3.0.6",
     "slick-carousel": "^1.8.1",
     "streaming-service": "file:",
     "typescript": "^4.4.2",
