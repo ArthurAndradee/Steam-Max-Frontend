@@ -10,6 +10,7 @@ import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import TitlePage from './Pages/Title-Page/title-page';
 import Watchlist from './Pages/Watchlist/watchlist';
 import { getMovies, generateMovieRoutes } from './utils/functions/movies';
+import Movies from './Pages/Movies/movies';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -57,6 +58,10 @@ const App = () => {
     {
       path: '/home',
       element: <Home movies={movies} />,
+    },
+    {
+      path: '/movies',
+      element: <Movies movies={movies} />,
     },
     {
       path:'/watchlist',

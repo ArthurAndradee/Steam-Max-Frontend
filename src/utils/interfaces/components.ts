@@ -1,6 +1,6 @@
 import { Movie } from "../interfaces/objects";
 
-export interface HomeProps {
+export interface SliderProps {
     movies: Movie[];
 }
 
@@ -16,10 +16,6 @@ export interface ProfileBubbleProps {
     onClick: () => void
 }
 
-export interface CategorizedMovies {
-  [category: string]: Movie[];
-}
-
 export const groupMoviesByCategory = (movies: Movie[]): CategorizedMovies => {
   return movies.reduce((acc: CategorizedMovies, movie: Movie) => {
     const category = movie.genre || 'Unknown';
@@ -30,7 +26,11 @@ export const groupMoviesByCategory = (movies: Movie[]): CategorizedMovies => {
     return acc;
   }, {});
 };
-  
+
+export interface CategorizedMovies {
+  [category: string]: Movie[];
+}
+
 export interface ProfileEditFormProps {
   currentName: string;
   currentPicture: string;
