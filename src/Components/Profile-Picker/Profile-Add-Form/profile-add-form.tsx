@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './profile-add-form.css';
+import { ProfileAddFormProps } from '../../../utils/interfaces/components';
 
-function ProfileForm() {
+function ProfileForm({ onCancel }: ProfileAddFormProps) {
   const [profileName, setProfileName] = useState('');
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
@@ -19,66 +20,55 @@ function ProfileForm() {
     event.preventDefault();
     
     if (!profileName || !profilePicture) {
-      alert('Please provide both a profile name and a picture.');
+      console.log('Please provide both a profile name and a picture.');
       return;
     }
 
-    const formData = new FormData();
-    formData.append('name', profileName);
-    formData.append('picture', profilePicture);
+    if(profileName && profilePicture) {
 
-    try {
-      const response = await fetch('http://localhost:5000/profiles/upload', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to add profile');
+      
+      const formData = new FormData();
+      formData.append('name', profileName);
+      formData.append('picture', profilePicture);
+      
+      try {
+        const response = await fetch('http://localhost:5000/profiles/upload', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: formData,
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to add profile');
+        }
+        
+        alert('Profile added successfully!');
+        window.location.reload()
+      } catch (error) {
+        console.error('Error adding profile:', error);
+        alert('Error adding profile. Please try again.');
       }
-
-      alert('Profile added successfully!');
-      window.location.reload()
-    } catch (error) {
-      console.error('Error adding profile:', error);
-      alert('Error adding profile. Please try again.');
     }
   };
 
   return (
-    <div className="modal-container z-2">
+    <div className="modal-container z-2 p-5">
       <form className='d-flex flex-column' onSubmit={handleSubmit}>
-        <h5 className="modal-title m-4 text-center">New Profile</h5>
-        <div className="form-group mx-5 my-2">
+        <h5 className="modal-title text-center">New Profile</h5>
+        <div className="form-group d-flex flex-column my-2">
           <label htmlFor="profileName" className='pb-1'>Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="profileName"
-            placeholder="John Doe"
-            value={profileName}
-            onChange={handleNameChange}
-          />
+          <input type="text" className="profile-name-input" id="profileName" placeholder="John Doe" value={profileName} onChange={handleNameChange} />
         </div>
-        <div className="mx-5 my-2 mb-4">
+        <div className="form-group d-flex flex-column my-2 mb-4">
           <label htmlFor="profilePicture" className="form-label">Profile Picture</label>
-          <input
-            className="form-control"
-            type="file"
-            id="profilePicture"
-            onChange={handleFileChange}
-          />
+          <input className="picture-input" type="file" id="profilePicture" onChange={handleFileChange}/>
         </div>
-        <button
-          type="submit"
-          className='btn btn-light m-auto mt-1 mb-4'
-          style={{ width: '10rem' }}
-        >
-          Done
-        </button>
+        <div className='d-flex flex-row justify-content-between'>
+          <button type="submit" className='button-save'>Done</button>
+          <button className='button-cancel' onClick={onCancel}>Cancel</button>
+        </div>
       </form>
     </div>
   );

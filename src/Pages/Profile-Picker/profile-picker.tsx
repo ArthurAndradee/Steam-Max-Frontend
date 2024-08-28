@@ -12,11 +12,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function ProfilePicker() {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [profileToEdit, setProfileToEdit] = useState<Profile | null>(null);
+
   const [isHovered, setIsHovered] = useState(false);
   const [isUserAddingProfile, setIsUserAddingProfile] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [choosingProfileToEdit, setChoosingProfileToEdit] = useState(false);
-  const [profileToEdit, setProfileToEdit] = useState<Profile | null>(null);
+  const [isUserAddingProfileVisible, setIsUserAddingProfileVisible] = useState(false);
+  const [isEditingProfileVisible, setIsEditingProfileVisible] = useState(false);
 
   useEffect(() => {
     const loadProfiles = async () => {
@@ -43,13 +46,25 @@ function ProfilePicker() {
   const handleProfileEdit = (profile: Profile) => {
     setProfileToEdit(profile);
     setIsEditingProfile(true);
+    setIsEditingProfileVisible(true);
   };
 
   const handleProfileUpdate = (updatedProfile: Profile) => {
     setProfiles(profiles.map(profile =>
       profile.name === profileToEdit?.name ? updatedProfile : profile
     ));
+    closeEditForm();
+  };
+
+  const closeEditForm = () => {
     setIsEditingProfile(false);
+    setIsUserAddingProfile(false);
+    setTimeout(() => setIsEditingProfileVisible(false), 500);
+  };
+
+  const closeAddForm = () => {
+    setIsUserAddingProfile(false);
+    setTimeout(() => setIsUserAddingProfileVisible(false), 500);
   };
 
   const handleProfileSelect = (userName: string) => {
@@ -87,22 +102,29 @@ function ProfilePicker() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className='profile-edit-main' onClick={() => setIsUserAddingProfile(true)}>
+          <div className='profile-edit-main' onClick={() => {
+            setIsUserAddingProfile(true);
+            setIsUserAddingProfileVisible(true);
+          }}>
             <div className='profile-edit-picture'>+</div>
             <div className='profile-edit-name'>Add Profile</div>
           </div>
         </div>
       </div>
-      {(isUserAddingProfile || (isEditingProfile && profileToEdit)) && <div className='dark-background' />}
-      {isUserAddingProfile && <ProfileForm />}
-      {isEditingProfile && profileToEdit && (
-        <ProfileEditForm
-          currentName={profileToEdit.name}
-          currentPicture={profileToEdit.picture}
-          onUpdateSuccess={handleProfileUpdate}
-          onCancel={() => setIsEditingProfile(false)}
-        />
-      )}
+      {(isUserAddingProfileVisible || (isEditingProfileVisible && profileToEdit)) && <div className='dark-background' />}
+      <div className={`modal ${isUserAddingProfileVisible ? (isUserAddingProfile ? 'modal--visible' : 'modal--invisible') : ''}`}>
+        {isUserAddingProfileVisible && <ProfileForm onCancel={closeAddForm} />}
+      </div>
+      <div className={`modal ${isEditingProfileVisible ? (isEditingProfile ? 'modal--visible' : 'modal--invisible') : ''}`}>
+        {isEditingProfileVisible && profileToEdit && (
+          <ProfileEditForm
+            currentName={profileToEdit.name}
+            currentPicture={profileToEdit.picture}
+            onUpdateSuccess={handleProfileUpdate}
+            onCancel={closeEditForm}
+          />
+        )}
+      </div>
       <button
         className='btn btn-dark edit-profile-button'
         style={{ width: '150px' }}

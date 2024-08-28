@@ -21,13 +21,23 @@ export interface CategorizedMovies {
 }
 
 export const groupMoviesByCategory = (movies: Movie[]): CategorizedMovies => {
-    return movies.reduce((acc: CategorizedMovies, movie: Movie) => {
-      const category = movie.genre || 'Unknown';
-      if (!acc[category]) {
-        acc[category] = [];
-      }
-      acc[category].push(movie);
-      return acc;
-    }, {});
-  };
+  return movies.reduce((acc: CategorizedMovies, movie: Movie) => {
+    const category = movie.genre || 'Unknown';
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(movie);
+    return acc;
+  }, {});
+};
   
+export interface ProfileEditFormProps {
+  currentName: string;
+  currentPicture: string;
+  onUpdateSuccess: (updatedProfile: { name: string; picture: string }) => void;
+  onCancel: () => void;
+}
+
+export interface ProfileAddFormProps {
+  onCancel: () => void;
+}
