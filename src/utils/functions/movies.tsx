@@ -24,3 +24,7 @@ export const generateMovieRoutes = (movies: Movie[]): RouteObject[] => {
     ),
   }));
 };
+
+export const filterMoviesByGenre = (movies: Movie[], genre: string): Movie[] => {
+  return movies.filter(movie => movie.genre.toLowerCase() === genre.toLowerCase());
+};

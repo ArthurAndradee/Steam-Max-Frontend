@@ -1,17 +1,15 @@
+// src/Pages/Home/home.tsx
+
 import Header from '../../Components/Headers/Standard/header';
 import TitleSlider from '../../Components/Titles-Slider/title-slider';
-import { Movie } from '../../utils/interfaces/objects';
 import { HomeProps } from '../../utils/interfaces/components';
+import { filterMoviesByGenre } from '../../utils/functions/movies'; // Import the function
 import './home.css';
 
 function Home({ movies }: HomeProps) {
-  const filterMoviesByGenre = (genre: string): Movie[] => {
-    return movies.filter(movie => movie.genre.toLowerCase() === genre.toLowerCase());
-  };
-
-  const romanceMovies = filterMoviesByGenre('Romance');
-  const fantasyMovies = filterMoviesByGenre('Fantasy');
-  const horrorMovies = filterMoviesByGenre('Horror');
+  const romanceMovies = filterMoviesByGenre(movies, 'Romance');
+  const fantasyMovies = filterMoviesByGenre(movies, 'Fantasy');
+  const horrorMovies = filterMoviesByGenre(movies, 'Horror');
 
   return (
     <div className='home-main'>
