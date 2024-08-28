@@ -130,7 +130,7 @@ function ProfilePicker() {
         style={{ width: '150px' }}
         onClick={() => setChoosingProfileToEdit(!choosingProfileToEdit)}
       >
-        Edit
+        {choosingProfileToEdit ? (<div>Stop editing</div>) : (<div>Edit</div>)}
       </button>
     </div>
   );
