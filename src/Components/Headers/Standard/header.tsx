@@ -42,7 +42,7 @@ function Header() {
         <div className='mx-2 pb-2'><Link to={'/children-and-family'} className='header-link'>Children and Family</Link></div>
       </div>
       <div className='d-flex'>
-        <FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} />
+        <Link to={'/search'} className='d-flex'><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faMagnifyingGlass} /></Link>
         <Link to={'/watchlist'} className='d-flex'><FontAwesomeIcon className='mx-2 text-light header-icon' icon={faBookmark} /></Link>
         <Link to={'/profile-picker'} className='d-flex'>
         {loading ? (

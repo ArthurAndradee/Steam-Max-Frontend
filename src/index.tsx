@@ -12,6 +12,7 @@ import Watchlist from './Pages/Watchlist/watchlist';
 import { getMovies, generateMovieRoutes } from './utils/functions/movies';
 import Movies from './Pages/Movies/movies';
 import ChildrenAndFamily from './Pages/Children-and-Family/children-and-family';
+import Search from './Pages/Search/search';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -59,6 +60,10 @@ const App = () => {
     {
       path: '/home',
       element: <Home movies={movies} />,
+    },
+    {
+      path: '/search',
+      element: <Search movies={movies} />,
     },
     {
       path: '/movies',
