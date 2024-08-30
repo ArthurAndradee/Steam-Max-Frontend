@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WelcomeHeader from '../../Components/Headers/Login/welcome';
 
-function SignIn () {
+function SignIn() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e: React.FormEvent) => {
@@ -56,22 +57,40 @@ function SignIn () {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <input
-              type="password"
-              className="form-control mb-3 w-75"
-              placeholder="Your password here"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              className="form-control mb-3 w-75"
-              placeholder="Confirm your password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
+            <div className="input-group mb-3 w-75">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control"
+                placeholder="Your password here"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="btn btn-outline-light"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+            <div className="input-group mb-3 w-75">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="btn btn-outline-light"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
             {error && <p className='text-danger'>{error}</p>}
             <button type='submit' className='btn btn-lg btn-danger w-25'>
               Register {'>'}

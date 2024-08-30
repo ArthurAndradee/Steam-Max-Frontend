@@ -6,6 +6,7 @@ import './login.css';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -35,7 +36,7 @@ function Login() {
   return (
     <div className='welcome-main'>
       <div className='welcome-main'>
-      <WelcomeHeader />
+        <WelcomeHeader />
         <div className='d-flex flex-column align-items-center m-5'>
           <h3 className='text-light display-2'>Unlimited movies, TV shows, and more</h3>
           <p className='text-light mt-3 mt-5' style={{ fontSize: '1.75rem' }}>Watch anywhere. Cancel anytime</p>
@@ -49,14 +50,23 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <input
-              type="text"
-              className="form-control mb-3 w-75"
-              placeholder="Your password here"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="input-group mb-3 w-75">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control"
+                placeholder="Your password here"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
             <button type='submit' className='btn btn-lg btn-danger w-25'>
               Log In {'>'}
             </button>
