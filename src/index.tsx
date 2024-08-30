@@ -11,6 +11,7 @@ import TitlePage from './Pages/Title-Page/title-page';
 import Watchlist from './Pages/Watchlist/watchlist';
 import { getMovies, generateMovieRoutes } from './utils/functions/movies';
 import Movies from './Pages/Movies/movies';
+import ChildrenAndFamily from './Pages/Children-and-Family/children-and-family';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -62,6 +63,10 @@ const App = () => {
     {
       path: '/movies',
       element: <Movies movies={movies} />,
+    },
+    {
+      path: '/children-and-family',
+      element: <ChildrenAndFamily movies={movies} />,
     },
     {
       path:'/watchlist',

@@ -11,6 +11,7 @@ function Movies({ movies }: SliderProps) {
     const horrorMovies = filterMoviesByGenre(movies, 'Horror');
     const crimeMovies = filterMoviesByGenre(movies, 'Crime');
     const dramaMovies = filterMoviesByGenre(movies, 'Drama');
+    const AnimationMovies = filterMoviesByGenre(movies, 'Animation');
 
     return (
         <div className="home-main">
@@ -33,6 +34,9 @@ function Movies({ movies }: SliderProps) {
 
             <div className='mx-5 my-2 ps-4 text-light display-6' style={{ fontSize: '1rem' }}>Drama</div>
             <TitleSlider movies={dramaMovies} />
+
+            <div className='mx-5 my-2 ps-4 text-light display-6' style={{ fontSize: '1rem' }}>Drama</div>
+            <TitleSlider movies={AnimationMovies} />
         </div>
     );
 }
