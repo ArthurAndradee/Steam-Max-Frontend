@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Movie } from '../interfaces/objects';
 import { RouteObject } from 'react-router-dom';
 import Player from '../../Pages/Title-Player/player';
+import TitlePage from '../../Pages/Title-Page/title-page';
 
 export const getMovies = async (): Promise<Movie[]> => {
   try {
@@ -13,7 +14,7 @@ export const getMovies = async (): Promise<Movie[]> => {
   }
 };
 
-export const generateMovieRoutes = (movies: Movie[]): RouteObject[] => {
+export const generatePlayerRoutes = (movies: Movie[]): RouteObject[] => {
   return movies.map(movie => ({
     path: `/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`,
     element: (
@@ -22,6 +23,24 @@ export const generateMovieRoutes = (movies: Movie[]): RouteObject[] => {
         title={movie.title} 
       />
     ),
+  }));
+};
+
+export const generateTitleRoutes = (movies: Movie[]): RouteObject[] => {
+  return movies.map(movie => ({
+    path: `/titles/${movie.title}`,
+    element: (
+      <TitlePage
+        _id={movie._id}
+        title={movie.title}
+        mainCast={movie.mainCast}
+        genre={movie.genre}
+        banner={movie.banner}
+        ageRating={movie.ageRating}
+        rating={movie.rating}
+        description={movie.description}
+      />
+    )
   }));
 };
 

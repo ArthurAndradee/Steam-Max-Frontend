@@ -7,9 +7,8 @@ import { Movie } from './utils/interfaces/objects';
 import './index.css';
 import Login from './Pages/Login/login';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
-import TitlePage from './Pages/Title-Page/title-page';
 import Watchlist from './Pages/Watchlist/watchlist';
-import { getMovies, generateMovieRoutes } from './utils/functions/movies';
+import { getMovies, generatePlayerRoutes, generateTitleRoutes } from './utils/functions/movies';
 import Movies from './Pages/Movies/movies';
 import ChildrenAndFamily from './Pages/Children-and-Family/children-and-family';
 import Search from './Pages/Search/search';
@@ -30,24 +29,12 @@ const App = () => {
   }, []);
 
   const movieRoutes = [
-    ...generateMovieRoutes(movies),
+    ...generatePlayerRoutes(movies),
   ];
 
-  const titleRoutes = movies.map((movie) => ({
-    path: `/titles/${movie.title}`,
-    element: (
-      <TitlePage
-        _id={movie._id}
-        title={movie.title}
-        mainCast={movie.mainCast}
-        genre={movie.genre}
-        banner={movie.banner}
-        ageRating={movie.ageRating}
-        rating={movie.rating}
-        description={movie.description}
-      />
-    )
-  }));
+  const titleRoutes = [
+    ...generateTitleRoutes(movies),
+  ]
 
   const router = createBrowserRouter([
     {
