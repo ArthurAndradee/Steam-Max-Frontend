@@ -37,7 +37,6 @@ function Header() {
       <h2 className='text-danger'>StreamMax</h2>
       <div className='d-flex'>
         <div className='mx-2 pb-2'><Link to={'/home'} className='header-link'>Home</Link></div>
-        <div className='mx-2 pb-2'><Link to={'/series'} className='header-link'>Series</Link></div>
         <div className='mx-2 pb-2'><Link to={'/movies'} className='header-link'>Movies</Link></div>
         <div className='mx-2 pb-2'><Link to={'/children-and-family'} className='header-link'>Children and Family</Link></div>
       </div>
