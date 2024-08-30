@@ -80,11 +80,11 @@ function ProfilePicker() {
           <div key={profile.name}>
             <div className={`choosing-profile-to-edit ${choosingProfileToEdit ? 'show' : ''} position-absolute d-flex px-2`} style={{ width: '10rem' }}>
               <div className='d-flex' style={{ width: '5rem', margin: 'auto' }}>
-                <div className='profile-button-container'>
-                  <FontAwesomeIcon className='profile-interact-button' onClick={() => handleProfileEdit(profile)} icon={faPenToSquare} />
+                <div className='profile-button-container' onClick={() => handleProfileEdit(profile)}>
+                  <FontAwesomeIcon className='profile-interact-button' icon={faPenToSquare} />
                 </div>
-                <div className='profile-button-container ms-auto'>
-                  <FontAwesomeIcon className='profile-interact-button' onClick={() => handleProfileDelete(profile.name)} icon={faTrashCan} />
+                <div className='profile-button-container ms-auto' onClick={() => handleProfileDelete(profile.name)}>
+                  <FontAwesomeIcon className='profile-interact-button' icon={faTrashCan} />
                 </div>
               </div>
             </div>

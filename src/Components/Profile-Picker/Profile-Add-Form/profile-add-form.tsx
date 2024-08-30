@@ -25,8 +25,6 @@ function ProfileForm({ onCancel }: ProfileAddFormProps) {
     }
 
     if(profileName && profilePicture) {
-
-      
       const formData = new FormData();
       formData.append('name', profileName);
       formData.append('picture', profilePicture);
@@ -44,11 +42,9 @@ function ProfileForm({ onCancel }: ProfileAddFormProps) {
           throw new Error('Failed to add profile');
         }
         
-        alert('Profile added successfully!');
         window.location.reload()
       } catch (error) {
         console.error('Error adding profile:', error);
-        alert('Error adding profile. Please try again.');
       }
     }
   };

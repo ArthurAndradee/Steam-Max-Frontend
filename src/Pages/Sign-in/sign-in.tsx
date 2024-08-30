@@ -29,7 +29,7 @@ function SignIn () {
       const data = await response.json();
 
       if (response.ok) {
-        navigate('/'); // Navigate to the login page after successful registration
+        navigate('/');
       } else {
         console.error('Registration failed:', data.message || 'An error occurred');
         setError(data.message || 'An error occurred');
