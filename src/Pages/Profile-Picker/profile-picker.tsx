@@ -94,7 +94,6 @@ function ProfilePicker() {
               picture={profile.picture}
               onClick={() => handleProfileSelect(profile.name)}
             />
-            <div className='mt-5 pt-5'></div>
           </div>
         ))}
         <div
@@ -118,13 +117,14 @@ function ProfilePicker() {
       <div className={`modal ${isEditingProfileVisible ? (isEditingProfile ? 'modal--visible' : 'modal--invisible') : ''}`}>
         {isEditingProfileVisible && profileToEdit && (
           <ProfileEditForm
-            currentName={profileToEdit.name}
-            currentPicture={profileToEdit.picture}
-            onUpdateSuccess={handleProfileUpdate}
-            onCancel={closeEditForm}
+          currentName={profileToEdit.name}
+          currentPicture={profileToEdit.picture}
+          onUpdateSuccess={handleProfileUpdate}
+          onCancel={closeEditForm}
           />
         )}
       </div>
+      <div className='mt-5 pt-5'></div>
       <button
         className='btn btn-dark edit-profile-button'
         style={{ width: '150px' }}

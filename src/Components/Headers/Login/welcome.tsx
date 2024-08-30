@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router';
 import './welcome.css';
 
 function WelcomeHeader() {
+  const navigate = useNavigate()
+
   return (
     <div className='p-5 d-flex'>
       <h2 className='text-danger'>StreamMax</h2>
@@ -8,7 +11,7 @@ function WelcomeHeader() {
         <option value="English">English</option>
         <option value="Portugues">Português</option>
       </select>
-      <button className='btn btn-danger ms-4'>Sign In</button>
+      <button className='btn btn-danger ms-4' onClick={() => navigate('/register')}>Sign In</button>
     </div>
   );
 }

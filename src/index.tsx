@@ -13,6 +13,7 @@ import { getMovies, generateMovieRoutes } from './utils/functions/movies';
 import Movies from './Pages/Movies/movies';
 import ChildrenAndFamily from './Pages/Children-and-Family/children-and-family';
 import Search from './Pages/Search/search';
+import SignIn from './Pages/Sign-in/sign-in';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -52,6 +53,10 @@ const App = () => {
     {
       path: '/',
       element: <Login />
+    },
+    {
+      path: '/register',
+      element: <SignIn />
     },
     {
       path: '/profile-picker',
