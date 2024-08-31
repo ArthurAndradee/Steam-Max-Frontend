@@ -7,6 +7,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -27,6 +28,7 @@ function Login() {
         navigate('/profile-picker');
       } else {
         console.error('Login failed:', data.message || 'An error occurred');
+        setError(true)
       }
     } catch (error) {
       console.error('Login failed:', error);
@@ -41,6 +43,7 @@ function Login() {
           <h3 className='text-light display-2'>Unlimited movies, TV shows, and more</h3>
           <p className='text-light mt-3 mt-5' style={{ fontSize: '1.75rem' }}>Watch anywhere. Cancel anytime</p>
           <p className='text-light mb-3 mb-5' style={{ fontSize: '1.75rem' }}>Ready to watch? Enter your email and password to log in.</p>
+          {error && <div className='fs-4 mb-3 text-danger'>Invalid name/password</div>}
           <form className='d-flex flex-column align-items-center w-50' onSubmit={handleLogin}>
             <input
               type="email"
