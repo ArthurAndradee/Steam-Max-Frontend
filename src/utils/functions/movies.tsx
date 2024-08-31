@@ -47,3 +47,8 @@ export const generateTitleRoutes = (movies: Movie[]): RouteObject[] => {
 export const filterMoviesByGenre = (movies: Movie[], genre: string): Movie[] => {
   return movies.filter(movie => movie.genre.toLowerCase() === genre.toLowerCase());
 };
+
+export function getRandomMovie(movies: Movie[]) {
+  const randomIndex = Math.floor(Math.random() * movies.length);
+  return movies[randomIndex];
+}
