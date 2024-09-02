@@ -35,7 +35,7 @@ function Movies({ movies }: SliderProps) {
             <div className='mx-5 my-2 ps-4 text-light display-6' style={{ fontSize: '1rem' }}>Drama</div>
             <TitleSlider movies={dramaMovies} />
 
-            <div className='mx-5 my-2 ps-4 text-light display-6' style={{ fontSize: '1rem' }}>Drama</div>
+            <div className='mx-5 my-2 ps-4 text-light display-6' style={{ fontSize: '1rem' }}>Animation</div>
             <TitleSlider movies={AnimationMovies} />
         </div>
     );
