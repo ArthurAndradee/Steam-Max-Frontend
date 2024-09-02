@@ -40,4 +40,14 @@
     100% {
         transform: rotate(360deg);
     }
-    } 
+} 
+
+@media only screen and (max-width: 1000px) {
+    .header-link {
+       display: none; 
+    }
+    
+    .titles-categories {
+        display: none;
+    }
+}

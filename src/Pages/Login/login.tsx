@@ -47,13 +47,13 @@ function Login() {
           <form className='d-flex flex-column align-items-center w-50' onSubmit={handleLogin}>
             <input
               type="email"
-              className="form-control mb-3 w-75"
+              className="form-control mb-3"
               placeholder="Your email here"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <div className="input-group mb-3 w-75">
+            <div className="input-group mb-3">
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -70,7 +70,7 @@ function Login() {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            <button type='submit' className='btn btn-lg btn-danger w-25'>
+            <button type='submit' className='btn btn-lg btn-danger'>
               Log In {'>'}
             </button>
           </form>
