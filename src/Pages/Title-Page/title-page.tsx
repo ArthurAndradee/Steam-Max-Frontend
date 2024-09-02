@@ -55,19 +55,19 @@ function TitlePage(currentMovie: Movie) {
       <div className='px-5 text-light d-flex flex-row'>
         <div className='pt-3'>
           <button
-            className='title-button btn btn-light'
+            className='title-button btn btn-light d-flex'
             onClick={() => navigate(`/movies/${currentMovie.title.toLowerCase().replace(/\s+/g, '-')}`)}
           >
             <FontAwesomeIcon icon={faPlay} className='ps-2' />
             <div className='ps-2'>Watch now</div>
           </button>
           {isInWatchlist ? (
-            <button onClick={handleRemoveFromWatchlist} className='title-button btn btn-danger mt-2'>
+            <button onClick={handleRemoveFromWatchlist} className='title-button btn btn-danger mt-2 d-flex'>
               <FontAwesomeIcon icon={faHeart} className='ps-1' />
               <div className='ps-2'>Remove from Watchlist</div>
             </button>
           ) : (
-            <button onClick={handleAddToWatchlist} className='title-button btn btn-danger mt-2'>
+            <button onClick={handleAddToWatchlist} className='title-button btn btn-danger mt-2 d-flex'>
               <FontAwesomeIcon icon={faHeart} className='ps-1' />
               <div className='ps-2'>Add to Watchlist</div>
             </button>

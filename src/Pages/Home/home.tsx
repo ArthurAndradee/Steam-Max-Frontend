@@ -21,7 +21,7 @@ function Home({ movies }: SliderProps) {
       <Header/>
 
       <div
-        className='mx-5 p-5 text-light shaded-background'
+        className='mx-5 p-5 text-light rounded-3 shaded-background'
         style={{
           backgroundImage: `url(${randomMovie.banner})`,
           backgroundSize: 'cover',
