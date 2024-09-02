@@ -14,31 +14,25 @@ function Home({ movies }: SliderProps) {
   const fantasyMovies = filterMoviesByGenre(movies, 'Fantasy');
   const horrorMovies = filterMoviesByGenre(movies, 'Horror');
 
-  const randomMovie = getRandomMovie(movies);
+  const randomMovie = getRandomMovie({ movies });
 
   return (
     <div>
       <Header/>
 
-      <div
-        className='mx-5 p-5 text-light rounded-3 shaded-background'
-        style={{
-          backgroundImage: `url(${randomMovie.banner})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          position: 'relative',
-        }}
-      >
-        <div className='display-4'>{randomMovie.title}</div>
-        <div className='fs-5 py-5'>{randomMovie.description}</div>
-        <button
-          className='title-button btn btn-light d-flex'
-          onClick={() => navigate(`/titles/${randomMovie.title}`)}
-        >
-          <FontAwesomeIcon icon={faPlay} className='ps-2' />
-          <div className='ps-4'>Watch now</div>
-        </button>
-      </div>
+      {randomMovie && 
+        <div className='shaded-background random-movie-section' style={{backgroundImage: `url(${randomMovie.banner})`}}>
+          <div className='display-4'>{randomMovie.title}</div>
+          <div className='fs-5 py-5'>{randomMovie.description}</div>
+          <button
+            className='title-button btn btn-light d-flex'
+            onClick={() => navigate(`/titles/${randomMovie.title}`)}
+          >
+            <FontAwesomeIcon icon={faPlay} className='ps-2' />
+            <div className='ps-4'>Watch now</div>
+          </button>
+        </div>
+      }
       
       <div className='mx-5 my-2 ps-4 text-light display-6' style={{ fontSize: '1rem' }}>Romance</div>
       <TitleSlider movies={romanceMovies} />

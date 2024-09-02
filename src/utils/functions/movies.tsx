@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Movie } from '../interfaces/objects';
+import { Movie, Movies } from '../interfaces/objects';
 import { RouteObject } from 'react-router-dom';
 import Player from '../../Pages/Title-Player/player';
 import TitlePage from '../../Pages/Title-Page/title-page';
@@ -48,7 +48,8 @@ export const filterMoviesByGenre = (movies: Movie[], genre: string): Movie[] => 
   return movies.filter(movie => movie.genre.toLowerCase() === genre.toLowerCase());
 };
 
-export function getRandomMovie(movies: Movie[]) {
-  const randomIndex = Math.floor(Math.random() * movies.length);
-  return movies[randomIndex];
-}
+export const getRandomMovie = (movies: Movies) => {
+  if (movies.movies.length === 0) return null;
+  const randomIndex = Math.floor(Math.random() * movies.movies.length);
+  return movies.movies[randomIndex];
+};
