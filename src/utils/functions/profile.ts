@@ -5,7 +5,7 @@ export async function fetchProfile(profileName: string) {
   }
 
   try {
-    const response = await fetch(`http://localhost:5000/profiles?profileName=${encodeURIComponent(profileName)}`, {
+    const response = await fetch(`https://streaming-service-backend-muow.onrender.com/profiles?profileName=${encodeURIComponent(profileName)}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -27,7 +27,7 @@ export async function fetchProfiles() {
   }
 
   try {
-    const response = await fetch('http://localhost:5000/profiles/get', {
+    const response = await fetch('https://streaming-service-backend-muow.onrender.com/profiles/get', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -51,7 +51,7 @@ export const updateProfile = async (formData: FormData) => {
   }
 
   try {
-    const response = await fetch(`http://localhost:5000/profiles/update/${encodeURIComponent(formData.get('profileName') as string)}`, {
+    const response = await fetch(`https://streaming-service-backend-muow.onrender.com/profiles/update/${encodeURIComponent(formData.get('profileName') as string)}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -77,7 +77,7 @@ export async function deleteProfile(profileName: string) {
   }
 
   try {
-    const response = await fetch(`http://localhost:5000/profiles/delete/${encodeURIComponent(profileName)}`, {
+    const response = await fetch(`https://streaming-service-backend-muow.onrender.com/profiles/delete/${encodeURIComponent(profileName)}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,

@@ -7,13 +7,12 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
+      const response = await fetch('https://streaming-service-backend-muow.onrender.com/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +27,6 @@ function Login() {
         navigate('/profile-picker');
       } else {
         console.error('Login failed:', data.message || 'An error occurred');
-        setError(true)
       }
     } catch (error) {
       console.error('Login failed:', error);
@@ -43,17 +41,16 @@ function Login() {
           <h3 className='text-light display-2'>Unlimited movies, TV shows, and more</h3>
           <p className='text-light mt-3 mt-5' style={{ fontSize: '1.75rem' }}>Watch anywhere. Cancel anytime</p>
           <p className='text-light mb-3 mb-5' style={{ fontSize: '1.75rem' }}>Ready to watch? Enter your email and password to log in.</p>
-          {error && <div className='fs-4 mb-3 text-danger'>Invalid name/password</div>}
           <form className='d-flex flex-column align-items-center w-50' onSubmit={handleLogin}>
             <input
               type="email"
-              className="form-control mb-3"
+              className="form-control mb-3 w-75"
               placeholder="Your email here"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <div className="input-group mb-3">
+            <div className="input-group mb-3 w-75">
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -70,7 +67,7 @@ function Login() {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            <button type='submit' className='btn btn-lg btn-danger'>
+            <button type='submit' className='btn btn-lg btn-danger w-25'>
               Log In {'>'}
             </button>
           </form>

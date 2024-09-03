@@ -6,7 +6,7 @@ import TitlePage from '../../Pages/Title-Page/title-page';
 
 export const getMovies = async (): Promise<Movie[]> => {
   try {
-    const response = await axios.get('http://localhost:5000/movies/');
+    const response = await axios.get('https://streaming-service-backend-muow.onrender.com/movies/');
     return response.data;
   } catch (error) {
     console.error('Error fetching movies: ', error);
@@ -19,7 +19,7 @@ export const generatePlayerRoutes = (movies: Movie[]): RouteObject[] => {
     path: `/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`,
     element: (
       <Player 
-        trailerUrl={`http://localhost:5000/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} 
+        trailerUrl={`https://streaming-service-backend-muow.onrender.com/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} 
         title={movie.title} 
       />
     ),
@@ -52,4 +52,4 @@ export const getRandomMovie = (movies: Movies) => {
   if (movies.movies.length === 0) return null;
   const randomIndex = Math.floor(Math.random() * movies.movies.length);
   return movies.movies[randomIndex];
-};
+}
