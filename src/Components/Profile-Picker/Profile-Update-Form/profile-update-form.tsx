@@ -43,7 +43,7 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
   };
 
   return (
-    <div className="modal-container z-2 p-5 border">
+    <div className="modal-container z-2 p-5">
       <form className='d-flex flex-column' onSubmit={handleSubmit}>
         <h5 className="modal-title text-center">Edit Profile</h5>
         <div className="form-group d-flex flex-column my-2">
