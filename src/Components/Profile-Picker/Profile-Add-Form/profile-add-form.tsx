@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './profile-add-form.css';
 import { ProfileAddFormProps } from '../../../utils/interfaces/components';
 
-function ProfileForm({ onCancel }: ProfileAddFormProps) {
+function ProfileAddForm({ onCancel }: ProfileAddFormProps) {
   const [profileName, setProfileName] = useState('');
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
@@ -30,7 +30,7 @@ function ProfileForm({ onCancel }: ProfileAddFormProps) {
       formData.append('picture', profilePicture);
       
       try {
-        const response = await fetch('http://localhost:5000/profiles/upload', {
+        const response = await fetch('https://streaming-service-backend-muow.onrender.com/profiles/upload', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -50,7 +50,7 @@ function ProfileForm({ onCancel }: ProfileAddFormProps) {
   };
 
   return (
-    <div className="modal-container z-2 p-5">
+    <div className="modal-container z-2 p-5 border">
       <form className='d-flex flex-column' onSubmit={handleSubmit}>
         <h5 className="modal-title text-center">New Profile</h5>
         <div className="form-group d-flex flex-column my-2">
@@ -70,4 +70,4 @@ function ProfileForm({ onCancel }: ProfileAddFormProps) {
   );
 }
 
-export default ProfileForm;
+export default ProfileAddForm;

@@ -1,5 +1,5 @@
 import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profile-bubble';
-import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
+import ProfileAddForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
 import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { Profile } from '../../utils/interfaces/objects';
@@ -15,8 +15,6 @@ function ProfilePicker() {
   const [profileToEdit, setProfileToEdit] = useState<Profile | null>(null);
   const [isLoadingProfiles, setIsLoadingProfiles] = useState(true); // New loading state
   const [isHovered, setIsHovered] = useState(false);
-  const [isUserAddingProfile, setIsUserAddingProfile] = useState(false);
-  const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [choosingProfileToEdit, setChoosingProfileToEdit] = useState(false);
   const [isUserAddingProfileVisible, setIsUserAddingProfileVisible] = useState(false);
   const [isEditingProfileVisible, setIsEditingProfileVisible] = useState(false);
@@ -48,7 +46,6 @@ function ProfilePicker() {
 
   const handleProfileEdit = (profile: Profile) => {
     setProfileToEdit(profile);
-    setIsEditingProfile(true);
     setIsEditingProfileVisible(true);
   };
 
@@ -60,13 +57,10 @@ function ProfilePicker() {
   };
 
   const closeEditForm = () => {
-    setIsEditingProfile(false);
-    setIsUserAddingProfile(false);
     setTimeout(() => setIsEditingProfileVisible(false), 500);
   };
 
   const closeAddForm = () => {
-    setIsUserAddingProfile(false);
     setTimeout(() => setIsUserAddingProfileVisible(false), 500);
   };
 
@@ -109,7 +103,6 @@ function ProfilePicker() {
               onMouseLeave={() => setIsHovered(false)}
             >
               <div className='profile-edit-main' onClick={() => {
-                setIsUserAddingProfile(true);
                 setIsUserAddingProfileVisible(true);
               }}>
                 <div className='profile-edit-picture'>+</div>
@@ -118,17 +111,17 @@ function ProfilePicker() {
             </div>
           </div>
         )}
-      {(isUserAddingProfileVisible || (isEditingProfileVisible && profileToEdit)) && <div className='dark-background' />}
-      <div className={`modal ${isUserAddingProfileVisible ? (isUserAddingProfile ? 'modal--visible' : 'modal--invisible') : ''}`}>
-        {isUserAddingProfileVisible && <ProfileForm onCancel={closeAddForm} />}
+      {(isUserAddingProfileVisible || isEditingProfileVisible) && <div className='dark-background' />}
+      <div className={isUserAddingProfileVisible ? 'profile-form-visible' : 'profile-form-hidden'}>
+        {isUserAddingProfileVisible && <ProfileAddForm onCancel={closeAddForm} />}
       </div>
-      <div className={`modal ${isEditingProfileVisible ? (isEditingProfile ? 'modal--visible' : 'modal--invisible') : ''}`}>
+      <div className={isEditingProfileVisible ? 'profile-form-visible' : 'profile-form-hidden'}>
         {isEditingProfileVisible && profileToEdit && (
           <ProfileEditForm
-          currentName={profileToEdit.name}
-          currentPicture={profileToEdit.picture}
-          onUpdateSuccess={handleProfileUpdate}
-          onCancel={closeEditForm}
+            currentName={profileToEdit.name}
+            currentPicture={profileToEdit.picture}
+            onUpdateSuccess={handleProfileUpdate}
+            onCancel={closeEditForm}
           />
         )}
       </div>
