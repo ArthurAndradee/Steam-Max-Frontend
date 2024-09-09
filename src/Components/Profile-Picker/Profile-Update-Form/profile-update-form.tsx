@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { updateProfile } from '../../../utils/functions/profile'; // Import the updateProfile function
+import { updateProfile } from '../../../utils/requests/profile-requests'; // Import the updateProfile function
 import { ProfileEditFormProps } from '../../../utils/interfaces/components';
 import './profile-update-form.css'
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from '../../Components/Headers/Standard/header';
 import { Movie } from '../../utils/interfaces/objects';
 import { Link } from 'react-router-dom';
-import { fetchWatchlist } from '../../utils/functions/watchlist'
+import { fetchWatchlist } from '../../utils/requests/watchlist-requests'
 import './watchlist.css';
 
 function Watchlist() {

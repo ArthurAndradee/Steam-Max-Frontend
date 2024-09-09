@@ -1,11 +1,12 @@
 import Header from '../../Components/Headers/Standard/header';
 import TitleSlider from '../../Components/Titles-Slider/title-slider';
 import { SliderProps } from '../../utils/interfaces/components';
-import { filterMoviesByGenre, getRandomMovie } from '../../utils/functions/movies';
-import './home.css';
+import { getRandomMovie } from '../../utils/requests/movie-requests';
 import { useNavigate } from 'react-router';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { filterMoviesByGenre } from '../../helpers/movies-helper';
+import './home.css';
 
 function Home({ movies }: SliderProps) {
   const navigate = useNavigate()

@@ -4,7 +4,7 @@ import './profile-picker.css';
 import { Profile } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
 import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
-import { deleteProfile, fetchProfiles } from '../../utils/functions/profile';
+import { deleteProfile, fetchProfiles } from '../../utils/requests/profile-requests';
 import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

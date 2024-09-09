@@ -4,7 +4,6 @@ export interface SliderProps {
     movies: Movie[];
 }
 
-
 export interface PlayerProps {
     trailerUrl: string;
     title: string;

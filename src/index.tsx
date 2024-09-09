@@ -8,11 +8,12 @@ import './index.css';
 import Login from './Pages/Login/login';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import Watchlist from './Pages/Watchlist/watchlist';
-import { getMovies, generatePlayerRoutes, generateTitleRoutes } from './utils/functions/movies';
+import { getMovies } from './utils/requests/movie-requests';
 import Movies from './Pages/Movies/movies';
 import ChildrenAndFamily from './Pages/Children-and-Family/children-and-family';
 import Search from './Pages/Search/search';
 import SignIn from './Pages/Sign-in/sign-in';
+import { generatePlayerRoutes, generateTitleRoutes } from './helpers/movies-helper';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
