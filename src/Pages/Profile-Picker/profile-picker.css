@@ -127,14 +127,14 @@
 }
 
 .choosing-profile-to-edit {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 }
 
 .choosing-profile-to-edit.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .modal {
@@ -150,15 +150,29 @@
     pointer-events: none;
     transform: translate(-50%, -50%) scale(0.95); 
     transition: opacity 0.5s ease, transform 0.5s ease; 
-  }
-  
-  .modal--visible {
+}
+
+.modal--visible {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -50%) scale(1); 
-  }
-  
-  
+}  
+
+.go-back-profile-picker {
+    position: absolute;
+
+    left: 1rem;
+    bottom: 1rem;
+
+    font-size: 1rem;
+
+    text-decoration: none;
+    color: #f9f9f982;
+}
+
+.go-back-profile-picker:hover {
+    text-decoration: underline;
+}
 
 @media only screen and (max-width: 1000px) {
     .profile-edit-main {

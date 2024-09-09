@@ -1,19 +1,19 @@
-import { useNavigate } from 'react-router-dom';
 import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profile-bubble';
-import './profile-picker.css';
+import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
+import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { Profile } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
-import ProfileForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
 import { deleteProfile, fetchProfiles } from '../../utils/requests/profile-requests';
-import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
-import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faLeftLong, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './profile-picker.css';
 
 function ProfilePicker() {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [profileToEdit, setProfileToEdit] = useState<Profile | null>(null);
-
+  const [isLoadingProfiles, setIsLoadingProfiles] = useState(true); // New loading state
   const [isHovered, setIsHovered] = useState(false);
   const [isUserAddingProfile, setIsUserAddingProfile] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -23,11 +23,14 @@ function ProfilePicker() {
 
   useEffect(() => {
     const loadProfiles = async () => {
+      setIsLoadingProfiles(true);
       try {
         const profilesData = await fetchProfiles();
         setProfiles(profilesData);
       } catch (error) {
         console.error('Error fetching profiles:', error);
+      } finally {
+        setIsLoadingProfiles(false); 
       }
     };
 
@@ -74,42 +77,47 @@ function ProfilePicker() {
 
   return (
     <div className='main-profile-picker'>
+      <Link to={'/'} className='go-back-profile-picker'><FontAwesomeIcon icon={faLeftLong} style={{paddingRight:'0.5rem'}}/>Go back</Link>
       <h3 className='profile-title'>Who is watching?</h3>
-      <div className='profiles-container'>
-        {profiles.map((profile: Profile) => (
-          <div key={profile.name}>
-            <div className={`choosing-profile-to-edit ${choosingProfileToEdit ? 'show' : ''} position-absolute d-flex px-2`} style={{ width: '10rem' }}>
-              <div className='d-flex' style={{ width: '5rem', margin: 'auto' }}>
-                <div className='profile-button-container' onClick={() => handleProfileEdit(profile)}>
-                  <FontAwesomeIcon className='profile-interact-button' icon={faPenToSquare} />
+        {isLoadingProfiles ? (
+          <span className="loading-spinner ms-2" style={{marginTop:'16rem', height:'60px', width:'60px'}}></span>
+        ) : (
+          <div className='profiles-container'>
+            {profiles.map((profile: Profile) => (
+              <div key={profile.name}>
+                <div className={`choosing-profile-to-edit ${choosingProfileToEdit ? 'show' : ''} position-absolute d-flex px-2`} style={{ width: '10rem' }}>
+                  <div className='d-flex' style={{ width: '5rem', margin: 'auto' }}>
+                    <div className='profile-button-container' onClick={() => handleProfileEdit(profile)}>
+                      <FontAwesomeIcon className='profile-interact-button' icon={faPenToSquare} />
+                    </div>
+                    <div className='profile-button-container ms-auto' onClick={() => handleProfileDelete(profile.name)}>
+                      <FontAwesomeIcon className='profile-interact-button' icon={faTrashCan} />
+                    </div>
+                  </div>
                 </div>
-                <div className='profile-button-container ms-auto' onClick={() => handleProfileDelete(profile.name)}>
-                  <FontAwesomeIcon className='profile-interact-button' icon={faTrashCan} />
-                </div>
+                <ProfileBubble
+                  key={profile.name}
+                  name={profile.name}
+                  picture={profile.picture}
+                  onClick={() => handleProfileSelect(profile.name)}
+                />
+              </div>
+            ))}
+            <div
+              className={`profile-edit-container ${isHovered ? 'hovered' : ''}`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <div className='profile-edit-main' onClick={() => {
+                setIsUserAddingProfile(true);
+                setIsUserAddingProfileVisible(true);
+              }}>
+                <div className='profile-edit-picture'>+</div>
+                <div className='profile-edit-name'>Add Profile</div>
               </div>
             </div>
-            <ProfileBubble
-              key={profile.name}
-              name={profile.name}
-              picture={profile.picture}
-              onClick={() => handleProfileSelect(profile.name)}
-            />
           </div>
-        ))}
-        <div
-          className={`profile-edit-container ${isHovered ? 'hovered' : ''}`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <div className='profile-edit-main' onClick={() => {
-            setIsUserAddingProfile(true);
-            setIsUserAddingProfileVisible(true);
-          }}>
-            <div className='profile-edit-picture'>+</div>
-            <div className='profile-edit-name'>Add Profile</div>
-          </div>
-        </div>
-      </div>
+        )}
       {(isUserAddingProfileVisible || (isEditingProfileVisible && profileToEdit)) && <div className='dark-background' />}
       <div className={`modal ${isUserAddingProfileVisible ? (isUserAddingProfile ? 'modal--visible' : 'modal--invisible') : ''}`}>
         {isUserAddingProfileVisible && <ProfileForm onCancel={closeAddForm} />}
@@ -125,13 +133,15 @@ function ProfilePicker() {
         )}
       </div>
       <div className='mt-5 pt-5'></div>
-      <button
-        className='btn btn-dark edit-profile-button'
-        style={{ width: '150px' }}
-        onClick={() => setChoosingProfileToEdit(!choosingProfileToEdit)}
-      >
-        {choosingProfileToEdit ? (<div>Stop editing</div>) : (<div>Edit</div>)}
-      </button>
+      {!isLoadingProfiles && 
+        <button
+          className='btn btn-dark edit-profile-button'
+          style={{ width: '150px' }}
+          onClick={() => setChoosingProfileToEdit(!choosingProfileToEdit)}
+        >
+          {choosingProfileToEdit ? (<div>Stop editing</div>) : (<div>Edit</div>)}
+        </button>
+      }
     </div>
   );
 }
