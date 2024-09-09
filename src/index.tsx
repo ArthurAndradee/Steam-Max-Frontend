@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Home from './Pages/Home/home';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Movie } from './utils/interfaces/objects';
-import './index.css';
 import Login from './Pages/Login/login';
 import ProfilePicker from './Pages/Profile-Picker/profile-picker';
 import Watchlist from './Pages/Watchlist/watchlist';
-import { getMovies } from './utils/requests/movie-requests';
 import Movies from './Pages/Movies/movies';
 import ChildrenAndFamily from './Pages/Children-and-Family/children-and-family';
 import Search from './Pages/Search/search';
 import SignIn from './Pages/Sign-in/sign-in';
+import { getMovies } from './utils/requests/movie-requests';
 import { generatePlayerRoutes, generateTitleRoutes } from './helpers/movies-helper';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Movie } from './utils/interfaces/objects';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

@@ -10,42 +10,50 @@ import Header from '../../Components/Headers/Standard/header';
 function TitlePage(currentMovie: Movie) {
   const navigate = useNavigate();
   const [isInWatchlist, setIsInWatchlist] = useState(false);
-  const currentProfile = localStorage.getItem('selectedProfile')
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const currentProfile = localStorage.getItem('selectedProfile');
 
   useEffect(() => {
     const checkWatchlist = async () => {
-      if(currentProfile)
-      try {
-        const watchlist = await fetchWatchlist(currentProfile);
-        const movieInWatchlist = watchlist.some((movie: Movie) => movie._id === currentMovie._id);
-        setIsInWatchlist(movieInWatchlist);
-      } catch (error) {
-        console.log(error)
+      if (currentProfile) {
+        try {
+          const watchlist = await fetchWatchlist(currentProfile);
+          const movieInWatchlist = watchlist.some((movie: Movie) => movie._id === currentMovie._id);
+          setIsInWatchlist(movieInWatchlist);
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
 
     checkWatchlist();
+
+    const timer = setTimeout(() => {
+      setIsButtonEnabled(true);
+    }, 3000);
+
+    return () => clearTimeout(timer); 
   }, [currentMovie._id, currentProfile]);
 
   const handleAddToWatchlist = async () => {
-    console.log(isInWatchlist)
-    if(currentProfile)
-    try {
-      setIsInWatchlist(true);
-      await addToWatchlist(currentProfile, currentMovie);
-    } catch (error) {
-      console.log(error)
+    if (isButtonEnabled && currentProfile) {
+      try {
+        setIsInWatchlist(true);
+        await addToWatchlist(currentProfile, currentMovie);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   const handleRemoveFromWatchlist = async () => {
-    console.log(isInWatchlist)
-    if(currentProfile)
-    try {
-      setIsInWatchlist(false);
-      await removeFromWatchlist(currentProfile,currentMovie._id);
-    } catch (error) {
-      console.log(error)
+    if (isButtonEnabled && currentProfile) {
+      try {
+        setIsInWatchlist(false);
+        await removeFromWatchlist(currentProfile, currentMovie._id);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -62,12 +70,20 @@ function TitlePage(currentMovie: Movie) {
             <div className='ps-2'>Watch now</div>
           </button>
           {isInWatchlist ? (
-            <button onClick={handleRemoveFromWatchlist} className='title-button btn btn-danger mt-2 d-flex'>
+            <button
+              onClick={handleRemoveFromWatchlist}
+              className='title-button btn btn-danger mt-2 d-flex'
+              disabled={!isButtonEnabled}
+            >
               <FontAwesomeIcon icon={faHeart} className='ps-1' />
               <div className='ps-2'>Remove from Watchlist</div>
             </button>
           ) : (
-            <button onClick={handleAddToWatchlist} className='title-button btn btn-danger mt-2 d-flex'>
+            <button
+              onClick={handleAddToWatchlist}
+              className='title-button btn btn-danger mt-2 d-flex'
+              disabled={!isButtonEnabled}
+            >
               <FontAwesomeIcon icon={faHeart} className='ps-1' />
               <div className='ps-2'>Add to Watchlist</div>
             </button>
