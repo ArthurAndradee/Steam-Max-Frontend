@@ -7,9 +7,11 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
   const [name, setName] = useState(currentName);
   const [picture, setPicture] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to disable the button
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsSubmitting(true); // Disable the Save button after click
 
     try {
       const formData = new FormData();
@@ -28,6 +30,7 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
     } catch (err) {
       setError('Failed to update profile');
       console.error('Error updating profile:', err);
+      setIsSubmitting(false); // Re-enable the Save button if an error occurs
     }
   };
 
@@ -48,16 +51,30 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
         <h5 className="modal-title text-center">Edit Profile</h5>
         <div className="form-group d-flex flex-column my-2">
           <label htmlFor="profileNameInput" className='pb-1'>Name</label>
-          <input type="text" className="profile-name-input" id="profile-nameInput" value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe"/>
+          <input 
+            type="text" 
+            className="profile-name-input" 
+            id="profile-nameInput" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
+            placeholder="John Doe"
+            disabled={isSubmitting} // Disable input if submitting
+          />
         </div>
         <div className="my-2 mb-4 d-flex flex-column">
           <label htmlFor="profilePictureInput" className="form-label">Profile Picture</label>
-          <input className="picture-input" type="file" id="profilePictureInput" onChange={(e) => setPicture(e.target.files ? e.target.files[0] : null)}/>
+          <input 
+            className="picture-input" 
+            type="file" 
+            id="profilePictureInput" 
+            onChange={(e) => setPicture(e.target.files ? e.target.files[0] : null)}
+            disabled={isSubmitting} // Disable input if submitting
+          />
         </div>
         {error && <div className="text-danger text-center">{error}</div>}
         <div className="d-flex flex-row justify-content-between">
-          <button className='button-save'>Save</button>
-          <button className='button-cancel' onClick={onCancel}>Cancel</button>
+          <button className='button-save' disabled={isSubmitting}>Save</button>
+          <button className='button-cancel' onClick={onCancel} disabled={isSubmitting}>Cancel</button>
         </div>
       </form>
     </div>

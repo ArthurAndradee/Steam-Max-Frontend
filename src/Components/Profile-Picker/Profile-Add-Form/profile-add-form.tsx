@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './profile-add-form.css';
 import { ProfileAddFormProps } from '../../../utils/interfaces/components';
+import './profile-add-form.css';
 
 function ProfileAddForm({ onCancel }: ProfileAddFormProps) {
   const [profileName, setProfileName] = useState('');
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfileName(event.target.value);
@@ -24,28 +25,29 @@ function ProfileAddForm({ onCancel }: ProfileAddFormProps) {
       return;
     }
 
-    if(profileName && profilePicture) {
-      const formData = new FormData();
-      formData.append('name', profileName);
-      formData.append('picture', profilePicture);
+    setIsSubmitting(true); 
+
+    const formData = new FormData();
+    formData.append('name', profileName);
+    formData.append('picture', profilePicture);
+    
+    try {
+      const response = await fetch('http://localhost:5000/profiles/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: formData,
+      });
       
-      try {
-        const response = await fetch('http://localhost:5000/profiles/upload', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: formData,
-        });
-        
-        if (!response.ok) {
-          throw new Error('Failed to add profile');
-        }
-        
-        window.location.reload()
-      } catch (error) {
-        console.error('Error adding profile:', error);
+      if (!response.ok) {
+        throw new Error('Failed to add profile');
       }
+      
+      window.location.reload();
+    } catch (error) {
+      console.error('Error adding profile:', error);
+      setIsSubmitting(false);
     }
   };
 
@@ -55,19 +57,33 @@ function ProfileAddForm({ onCancel }: ProfileAddFormProps) {
         <h5 className="modal-title text-center">New Profile</h5>
         <div className="form-group d-flex flex-column my-2">
           <label htmlFor="profileName" className='pb-1'>Name</label>
-          <input type="text" className="profile-name-input" id="profileName" placeholder="John Doe" value={profileName} onChange={handleNameChange} />
+          <input 
+            type="text" 
+            className="profile-name-input" 
+            id="profileName" 
+            placeholder="John Doe" 
+            value={profileName} 
+            onChange={handleNameChange} 
+            disabled={isSubmitting}
+          />
         </div>
         <div className="form-group d-flex flex-column my-2 mb-4">
           <label htmlFor="profilePicture" className="form-label">Profile Picture</label>
-          <input className="picture-input" type="file" id="profilePicture" onChange={handleFileChange}/>
+          <input 
+            className="picture-input" 
+            type="file" 
+            id="profilePicture" 
+            onChange={handleFileChange} 
+            disabled={isSubmitting} 
+          />
         </div>
         <div className='d-flex flex-row justify-content-between'>
-          <button type="submit" className='button-save'>Done</button>
-          <button className='button-cancel' onClick={onCancel}>Cancel</button>
+          <button type="submit" className='button-save' disabled={isSubmitting}>Done</button>
+          <button className='button-cancel' onClick={onCancel} disabled={isSubmitting}>Cancel</button>
         </div>
       </form>
     </div>
   );
 }
 
-export default ProfileAddForm;
+export default ProfileAddForm

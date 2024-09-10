@@ -13,7 +13,7 @@ function ProfilePicker() {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [profileToEdit, setProfileToEdit] = useState<Profile | null>(null);
-  const [isLoadingProfiles, setIsLoadingProfiles] = useState(true); // New loading state
+  const [isLoadingProfiles, setIsLoadingProfiles] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [choosingProfileToEdit, setChoosingProfileToEdit] = useState(false);
   const [isUserAddingProfileVisible, setIsUserAddingProfileVisible] = useState(false);
@@ -58,10 +58,12 @@ function ProfilePicker() {
 
   const closeEditForm = () => {
     setIsEditingProfileVisible(false)
+    window.location.reload();
   };
 
   const closeAddForm = () => {
     setIsUserAddingProfileVisible(false)
+    window.location.reload();
   };
 
   const handleProfileSelect = (userName: string) => {
@@ -112,15 +114,19 @@ function ProfilePicker() {
           </div>
         )}
       {(isUserAddingProfileVisible || isEditingProfileVisible) && <div className='dark-background' />}
-      {isUserAddingProfileVisible && <ProfileAddForm onCancel={closeAddForm} />}
-      {isEditingProfileVisible && profileToEdit && (
-          <ProfileEditForm
-            currentName={profileToEdit.name}
-            currentPicture={profileToEdit.picture}
-            onUpdateSuccess={handleProfileUpdate}
-            onCancel={closeEditForm}
-          />
-        )}
+      <div className={`choosing-profile-to-edit ${isUserAddingProfileVisible ? 'show' : ''} position-absolute mt-5 pt-5   `}>
+        {isUserAddingProfileVisible && <ProfileAddForm onCancel={closeAddForm} />}
+      </div>
+      <div className={`choosing-profile-to-edit ${isEditingProfileVisible ? 'show' : ''} position-absolute mt-5 pt-5  `}>
+        {isEditingProfileVisible && profileToEdit && (
+            <ProfileEditForm
+              currentName={profileToEdit.name}
+              currentPicture={profileToEdit.picture}
+              onUpdateSuccess={handleProfileUpdate}
+              onCancel={closeEditForm}
+            />
+        )}        
+      </div>
       <div className='mt-5 pt-5'></div>
       {!isLoadingProfiles && 
         <button
