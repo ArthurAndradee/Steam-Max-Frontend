@@ -68,7 +68,7 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
             type="file" 
             id="profilePictureInput" 
             onChange={(e) => setPicture(e.target.files ? e.target.files[0] : null)}
-            disabled={isSubmitting} // Disable input if submitting
+            disabled={isSubmitting}
           />
         </div>
         {error && <div className="text-danger text-center">{error}</div>}
