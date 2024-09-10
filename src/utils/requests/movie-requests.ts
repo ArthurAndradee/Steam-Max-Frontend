@@ -3,7 +3,7 @@ import { Movie, Movies } from '../interfaces/objects';
 
 export const getMovies = async (): Promise<Movie[]> => {
   try {
-    const response = await axios.get('https://streaming-service-backend-muow.onrender.com/movies/');
+    const response = await axios.get('http://localhost:5000/movies/');
     return response.data;
   } catch (error) {
     console.error('Error fetching movies: ', error);

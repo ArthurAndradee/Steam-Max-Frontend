@@ -19,7 +19,7 @@ function SignIn() {
     }
 
     try {
-      const response = await fetch('https://streaming-service-backend-muow.onrender.com/auth/register', {
+      const response = await fetch('http://localhost:5000/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

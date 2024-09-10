@@ -8,7 +8,7 @@ export async function fetchWatchlist(profileId: string) {
   }
 
   try {
-    const response = await fetch(`https://streaming-service-backend-muow.onrender.com/watchlist/${profileId}`, {
+    const response = await fetch(`http://localhost:5000/watchlist/${profileId}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -36,7 +36,7 @@ export async function addToWatchlist(profileId: string, movie: Movie) {
   }
 
   try {
-    const response = await fetch(`https://streaming-service-backend-muow.onrender.com/watchlist/${profileId}/add`, {
+    const response = await fetch(`http://localhost:5000/watchlist/${profileId}/add`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export async function removeFromWatchlist(profileName: string, movieId: string) 
   }
 
   try {
-    const response = await fetch(`https://streaming-service-backend-muow.onrender.com/watchlist/${profileName}/delete`, {
+    const response = await fetch(`http://localhost:5000/watchlist/${profileName}/delete`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
