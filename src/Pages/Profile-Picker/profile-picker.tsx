@@ -57,11 +57,11 @@ function ProfilePicker() {
   };
 
   const closeEditForm = () => {
-    setTimeout(() => setIsEditingProfileVisible(false), 500);
+    setIsEditingProfileVisible(false)
   };
 
   const closeAddForm = () => {
-    setTimeout(() => setIsUserAddingProfileVisible(false), 500);
+    setIsUserAddingProfileVisible(false)
   };
 
   const handleProfileSelect = (userName: string) => {
@@ -112,11 +112,8 @@ function ProfilePicker() {
           </div>
         )}
       {(isUserAddingProfileVisible || isEditingProfileVisible) && <div className='dark-background' />}
-      <div className={isUserAddingProfileVisible ? 'profile-form-visible' : 'profile-form-hidden'}>
-        {isUserAddingProfileVisible && <ProfileAddForm onCancel={closeAddForm} />}
-      </div>
-      <div className={isEditingProfileVisible ? 'profile-form-visible' : 'profile-form-hidden'}>
-        {isEditingProfileVisible && profileToEdit && (
+      {isUserAddingProfileVisible && <ProfileAddForm onCancel={closeAddForm} />}
+      {isEditingProfileVisible && profileToEdit && (
           <ProfileEditForm
             currentName={profileToEdit.name}
             currentPicture={profileToEdit.picture}
@@ -124,7 +121,6 @@ function ProfilePicker() {
             onCancel={closeEditForm}
           />
         )}
-      </div>
       <div className='mt-5 pt-5'></div>
       {!isLoadingProfiles && 
         <button
