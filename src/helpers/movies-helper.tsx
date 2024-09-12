@@ -8,7 +8,7 @@ export const generatePlayerRoutes = (movies: Movie[]): RouteObject[] => {
       path: `/movies/${movie.title.toLowerCase().replace(/\s+/g, '-')}`,
       element: (
         <Player 
-          trailerUrl={`https://streaming-service-backend-muow.onrender.com/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} 
+          trailerUrl={`http://localhost:5000/videos/${movie.title.toLowerCase().replace(/\s+/g, '-')}`} 
           title={movie.title} 
         />
       ),
