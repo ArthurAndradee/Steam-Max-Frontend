@@ -7,6 +7,7 @@ export interface SliderProps {
 export interface PlayerProps {
     trailerUrl: string;
     title: string;
+    banner: string,
 }  
 
 export interface ProfileBubbleProps {

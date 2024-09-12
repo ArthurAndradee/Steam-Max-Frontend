@@ -3,7 +3,7 @@ import { PlayerProps } from '../../utils/interfaces/components';
 import { Video } from "reactjs-media";
 import './player.css';
 
-function Player({ trailerUrl, title }: PlayerProps) {
+function Player({ trailerUrl, title, banner }: PlayerProps) {
     const [isCursorMoving, setIsCursorMoving] = useState(true);
 
     useEffect(() => {
@@ -36,9 +36,7 @@ function Player({ trailerUrl, title }: PlayerProps) {
                     controls={true}
                     height={1080}
                     width={1920}
-                    poster={
-                      "https://hips.hearstapps.com/hmg-prod/images/ripley-pa-108-011822-01629-r-661067043d66f.jpg?resize=980:*"
-                    }
+                    poster={banner}
                 />
                 </div>
             </div>
