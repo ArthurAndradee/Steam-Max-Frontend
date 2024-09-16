@@ -69,24 +69,37 @@ function TitlePage(currentMovie: Movie) {
             <FontAwesomeIcon icon={faPlay} className='ps-2' />
             <div className='ps-2'>Watch now</div>
           </button>
-          {isInWatchlist ? (
+          {!isButtonEnabled ? (
             <button
               onClick={handleRemoveFromWatchlist}
               className='title-button btn btn-danger mt-2 d-flex'
               disabled={!isButtonEnabled}
             >
-              <FontAwesomeIcon icon={faHeart} className='ps-1' />
-              <div className='ps-2'>Remove from Watchlist</div>
+              <div className='ps-5 ms-2'>
+                <span className="loading-spinner ms-2"></span>
+              </div>
             </button>
           ) : (
-            <button
-              onClick={handleAddToWatchlist}
-              className='title-button btn btn-danger mt-2 d-flex'
-              disabled={!isButtonEnabled}
-            >
-              <FontAwesomeIcon icon={faHeart} className='ps-1' />
-              <div className='ps-2'>Add to Watchlist</div>
-            </button>
+            <div>
+              {isInWatchlist ? (
+                <button
+                  onClick={handleRemoveFromWatchlist}
+                  className='title-button btn btn-danger mt-2 d-flex'
+                >
+                  <FontAwesomeIcon icon={faHeart} className='ps-1' />
+                  <div className='ps-2'>Remove from Watchlist</div>
+                </button>
+              ) : (
+                <button
+                  onClick={handleAddToWatchlist}
+                  className='title-button btn btn-danger mt-2 d-flex'
+                >
+                  <FontAwesomeIcon icon={faHeart} className='ps-1' />
+                  <div className='ps-2'>Add to Watchlist</div>
+                </button>
+              )}
+
+            </div>
           )}
           <div className='d-flex flex-column pt-3'>
             <div className='d-flex flex-column'>Cast:
