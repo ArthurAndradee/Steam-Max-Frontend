@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Movie } from '../../utils/interfaces/objects';
 import { addToWatchlist, removeFromWatchlist, fetchWatchlist } from '../../utils/requests/watchlist-requests';
-import './title-page.css';
 import { faPlay, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Header from '../../Components/Headers/Standard/header';
+import './title-page.css';
 
 function TitlePage(currentMovie: Movie) {
   const navigate = useNavigate();
