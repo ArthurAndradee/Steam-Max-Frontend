@@ -72,7 +72,7 @@ function ProfilePicker() {
   };
 
   return (
-    <div className='main-profile-picker'>
+    <div className='main-profile-picker pb-5'>
       <Link to={'/'} className='go-back-profile-picker'><FontAwesomeIcon icon={faLeftLong} style={{paddingRight:'0.5rem'}}/>Go back</Link>
       <h3 className='profile-title'>Who is watching?</h3>
         {isLoadingProfiles ? (
