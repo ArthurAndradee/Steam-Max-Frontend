@@ -38,19 +38,19 @@ function Login() {
       <div className='welcome-main'>
         <WelcomeHeader />
         <div className='d-flex flex-column align-items-center m-5'>
-          <h3 className='text-light display-2'>Unlimited movies, TV shows, and more</h3>
-          <p className='text-light mt-3 mt-5' style={{ fontSize: '1.75rem' }}>Watch anywhere. Cancel anytime</p>
-          <p className='text-light mb-3 mb-5' style={{ fontSize: '1.75rem' }}>Ready to watch? Enter your email and password to log in.</p>
+          <h3 className='text-light display-2 text-center'>Unlimited movies, TV shows, and more</h3>
+          <p className='text-light mt-3 mt-5 text-center' style={{ fontSize: '1.75rem' }}>Watch anywhere. Cancel anytime</p>
+          <p className='text-light mb-3 mb-5 text-center' style={{ fontSize: '1.75rem' }}>Ready to watch? Enter your email and password to log in.</p>
           <form className='d-flex flex-column align-items-center w-50' onSubmit={handleLogin}>
             <input
               type="email"
-              className="form-control mb-3 w-75"
+              className="form-control mb-3"
               placeholder="Your email here"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <div className="input-group mb-3 w-75">
+            <div className="input-group mb-3">
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -67,7 +67,7 @@ function Login() {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            <button type='submit' className='btn btn-lg btn-danger w-25'>
+            <button type='submit' className='btn btn-lg btn-danger'>
               Log In {'>'}
             </button>
           </form>
