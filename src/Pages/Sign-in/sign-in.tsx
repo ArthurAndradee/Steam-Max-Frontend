@@ -51,13 +51,13 @@ function SignIn() {
           <form className='d-flex flex-column align-items-center w-50' onSubmit={handleRegister}>
             <input
               type="email"
-              className="form-control mb-3 w-75"
+              className="form-control mb-3"
               placeholder="Your email here"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <div className="input-group mb-3 w-75">
+            <div className="input-group mb-3">
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -74,7 +74,7 @@ function SignIn() {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            <div className="input-group mb-3 w-75">
+            <div className="input-group mb-3">
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -92,7 +92,7 @@ function SignIn() {
               </button>
             </div>
             {error && <p className='text-danger'>{error}</p>}
-            <button type='submit' className='btn btn-lg btn-danger w-25'>
+            <button type='submit' className='btn btn-lg btn-danger'>
               Register {'>'}
             </button>
           </form>
