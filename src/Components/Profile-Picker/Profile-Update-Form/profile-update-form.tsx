@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { updateProfile } from '../../../utils/requests/profile-requests'; // Import the updateProfile function
+import { updateProfile } from '../../../utils/requests/profile-requests';
 import { ProfileEditFormProps } from '../../../utils/interfaces/components';
 import './profile-update-form.css'
 
@@ -7,11 +7,11 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
   const [name, setName] = useState(currentName);
   const [picture, setPicture] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false); // State to disable the button
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setIsSubmitting(true); // Disable the Save button after click
+    setIsSubmitting(true);
 
     try {
       const formData = new FormData();
@@ -30,7 +30,7 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
     } catch (err) {
       setError('Failed to update profile');
       console.error('Error updating profile:', err);
-      setIsSubmitting(false); // Re-enable the Save button if an error occurs
+      setIsSubmitting(false);
     }
   };
 
@@ -58,7 +58,7 @@ function ProfileEditForm({ currentName, currentPicture, onUpdateSuccess, onCance
             value={name} 
             onChange={(e) => setName(e.target.value)} 
             placeholder="John Doe"
-            disabled={isSubmitting} // Disable input if submitting
+            disabled={isSubmitting} 
           />
         </div>
         <div className="my-2 mb-4 d-flex flex-column">

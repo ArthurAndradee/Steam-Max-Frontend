@@ -1,8 +1,8 @@
 import Slider from 'react-slick';
-import './title-slider.css';
 import { Link } from 'react-router-dom';
 import { Movies } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
+import './title-slider.css';
 
 function TitleSlider({ movies }: Movies) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
