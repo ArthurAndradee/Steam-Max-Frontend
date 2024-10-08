@@ -32,7 +32,7 @@ function ProfileAddForm({ onCancel }: ProfileAddFormProps) {
     formData.append('picture', profilePicture);
     
     try {
-      const response = await fetch('http://localhost:5000/profiles/upload', {
+      const response = await fetch('https://streaming-service-backend-4fjd.onrender.com/profiles/upload', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
