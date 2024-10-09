@@ -52,7 +52,7 @@ function Header() {
           src={profileImageSrc}
           alt="Profile"
           onError={(e) => {
-            e.currentTarget.src = 'https://cdn-icons-png.freepik.com/512/10870/10870763.png'; // Fallback image URL
+            e.currentTarget.src = 'https://cdn-icons-png.freepik.com/512/10870/10870763.png';
           }}
           />
         )}
