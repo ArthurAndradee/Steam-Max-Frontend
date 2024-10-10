@@ -1,7 +1,7 @@
-import Header from "../../Components/Headers/Standard/header";
-import TitleSlider from "../../Components/Titles-Slider/title-slider";
 import { filterMoviesByGenre } from "../../helpers/movies-helper";
 import { SliderProps } from "../../utils/interfaces/components";
+import Header from "../../Components/Headers/Standard/header";
+import TitleSlider from "../../Components/Titles-Slider/title-slider";
 import './movies.css'
 
 function Movies({ movies }: SliderProps) {

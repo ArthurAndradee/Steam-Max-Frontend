@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { SliderProps } from "../../utils/interfaces/components";
-import Header from "../../Components/Headers/Standard/header";
 import { useState } from "react";
 import { Movie } from "../../utils/interfaces/objects";
+import Header from "../../Components/Headers/Standard/header";
 import './search.css'
 
 function Search({ movies }: SliderProps) {

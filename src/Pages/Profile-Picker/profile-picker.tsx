@@ -1,12 +1,12 @@
-import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profile-bubble';
-import ProfileAddForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
-import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { Profile } from '../../utils/interfaces/objects';
 import { useState, useEffect } from 'react';
 import { deleteProfile, fetchProfiles } from '../../utils/requests/profile-requests';
 import { faLeftLong, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ProfileBubble from '../../Components/Profile-Picker/Profile-Bubble/profile-bubble';
+import ProfileAddForm from '../../Components/Profile-Picker/Profile-Add-Form/profile-add-form';
+import ProfileEditForm from '../../Components/Profile-Picker/Profile-Update-Form/profile-update-form';
 import './profile-picker.css';
 
 function ProfilePicker() {
