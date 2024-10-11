@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Header from '../../Components/Headers/Standard/header';
 import { Movie } from '../../utils/interfaces/objects';
 import { Link } from 'react-router-dom';
 import { fetchWatchlist } from '../../utils/requests/watchlist-requests'
+import Header from '../../Components/Headers/Standard/header';
 import './watchlist.css';
 
 function Watchlist() {
